@@ -12,7 +12,9 @@
 <meta property="og:description" content="ICF akredite koç ve mentörlerle kariyer ve öz liderlik koçluğu. Ücretsiz ön görüşme randevusu alın.">
 <meta property="og:image" content="https://kariyeristik.com/logo.png">
 <meta name="twitter:card" content="summary">
-<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#121110">
+<style>html{background:#121110}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <meta name="description" content="Kariyeristik: ICF akredite koç ve mentörlerle kariyer ve öz liderlik koçluğu. Ücretsiz ön görüşme randevusu alın.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -35,15 +37,8 @@
     --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
     --wrap: 1120px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --bg: #121110; --surface: #1b1917; --ink: #f2ede9; --muted: #b0a79f; --line: #2e2a26;
-      --brand: #f6752c; --on-brand: #141414; --accent-text: #ff9a5c; --brand-soft: #3a2416;
-      --ok-bg: #1d2b14; --ok-fg: #b4dc8a; --ok-line: #3d5a24;
-      color-scheme: dark;
-    }
-  }
-  :root[data-theme="dark"] {
+  /* Site her cihazda koyu temada açılır */
+  :root, :root[data-theme="dark"], :root[data-theme="light"] {
     --bg: #121110; --surface: #1b1917; --ink: #f2ede9; --muted: #b0a79f; --line: #2e2a26;
     --brand: #f6752c; --on-brand: #141414; --accent-text: #ff9a5c; --brand-soft: #3a2416;
     --ok-bg: #1d2b14; --ok-fg: #b4dc8a; --ok-line: #3d5a24;
