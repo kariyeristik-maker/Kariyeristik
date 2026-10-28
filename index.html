@@ -195,7 +195,10 @@
   .socials .ic { width: 56px; height: 56px; border-radius: 50%; border: 1.5px solid var(--on-brand); display: grid; place-items: center; transition: background .15s ease, color .15s ease; }
   .socials .ic svg { width: 24px; height: 24px; }
   .socials a:hover .ic { background: var(--on-brand); color: var(--brand); }
-  .mail-text { margin-top: 16px; font-size: 15px; opacity: .85; }
+  .socials .cut { fill: var(--brand); }
+  .socials .cut-line { stroke: var(--brand); }
+  .socials a:hover .cut { fill: var(--on-brand); }
+  .socials a:hover .cut-line { stroke: var(--on-brand); }
   @media (max-width: 860px) { .duo { grid-template-columns: 1fr; } }
 
   footer { border-top: 1px solid var(--line); padding-block: 28px; font-size: 14px; color: var(--muted); }
@@ -211,7 +214,7 @@
 <body>
 <header class="site">
   <div class="wrap nav">
-    <a class="brand" href="#top" aria-label="Kariyeristik ana sayfa">
+    <a class="brand" href="/" aria-label="Kariyeristik ana sayfa">
       <img src="logo.png" alt="">
       Kariyeristik
     </a>
@@ -219,14 +222,13 @@
       <li><a href="#hakkimizda">Hakkımızda</a></li>
       <li><a href="#kocluk">Koçluk</a></li>
       <li><a href="#surec">Süreç</a></li>
-      <li><a href="#bulten">Bülten</a></li>
-      <li><a href="#kanallar">Mağaza</a></li>
+      <li><a href="#takip">Bizi Takip Edin</a></li>
     </ul>
     <a class="btn btn-primary" href="#randevu">Randevu al</a>
   </div>
 </header>
 
-<main id="top">
+<main>
   <section class="hero">
     <div class="wrap hero-grid">
       <div>
@@ -397,7 +399,7 @@
     </div>
   </section>
 
-  <section id="bulten">
+  <section id="takip">
     <div class="wrap duo">
       <div class="newsletter">
         <p class="eyebrow">Bülten</p>
@@ -410,7 +412,7 @@
         <p class="nl-msg" id="nl-msg" aria-live="polite">E-posta adresin yalnızca bülten gönderimi için kullanılır.</p>
       </div>
 
-      <div class="vcard" id="kanallar">
+      <div class="vcard">
         <div class="vc-main">
           <p class="eyebrow">Dijital ürünler</p>
           <h3>Kariyeristik Mağaza</h3>
@@ -423,11 +425,10 @@
           <p class="eyebrow">Bizi takip edin</p>
           <ul class="socials">
             <li><a href="https://www.instagram.com/kariyeristik" target="_blank" rel="noopener" aria-label="Instagram: @kariyeristik"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></span>Instagram</a></li>
-            <li><a href="https://www.youtube.com/@kariyeristik" target="_blank" rel="noopener" aria-label="YouTube: @kariyeristik"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4.5" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="var(--on-brand)"/></svg></span>YouTube</a></li>
-            <li><a href="https://open.spotify.com/show/6BFrFts6UPBIYVVlykZ9Zj" target="_blank" rel="noopener" aria-label="Spotify: Kariyeristik Podcast"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M6.8 9.6c3.6-1.1 7.6-.8 10.6 1M7.4 12.6c3-.8 6.2-.5 8.7.9M8 15.4c2.4-.6 4.7-.4 6.7.7" fill="none" stroke="var(--on-brand)" stroke-width="1.6" stroke-linecap="round"/></svg></span>Spotify</a></li>
+            <li><a href="https://www.youtube.com/@kariyeristik" target="_blank" rel="noopener" aria-label="YouTube: @kariyeristik"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4.5" fill="currentColor"/><path class="cut" d="M10 9v6l5.2-3z"/></svg></span>YouTube</a></li>
+            <li><a href="https://open.spotify.com/show/6BFrFts6UPBIYVVlykZ9Zj" target="_blank" rel="noopener" aria-label="Spotify: Kariyeristik Podcast"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M6.8 9.6c3.6-1.1 7.6-.8 10.6 1M7.4 12.6c3-.8 6.2-.5 8.7.9M8 15.4c2.4-.6 4.7-.4 6.7.7" class="cut-line" fill="none" stroke-width="1.6" stroke-linecap="round"/></svg></span>Spotify</a></li>
             <li><a href="mailto:kariyeristik@gmail.com" aria-label="E-posta: kariyeristik@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>E-posta</a></li>
           </ul>
-          <p class="mail-text">kariyeristik@gmail.com</p>
         </div>
     </div>
   </section>
