@@ -164,6 +164,20 @@
   @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
 
+  /* Yetkinlik Check-Up ürün bandı */
+  .ycu-band { border-block: 1px solid var(--line); }
+  .ycu-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 5vw, 64px); align-items: center; }
+  .ycu-copy { display: grid; gap: 18px; justify-items: start; min-width: 0; }
+  .ycu-copy .lead { max-width: 56ch; }
+  .ycu-meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ycu-meta span { font-size: 13px; padding: 5px 12px; border-radius: 999px; background: var(--brand-soft); color: var(--accent-text); }
+  .ycu-viz { display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; max-width: 420px; justify-self: center; width: 100%; }
+  .ycu-viz i { aspect-ratio: 1; border-radius: 50%; background: var(--line); }
+  .ycu-viz i.s { background: var(--brand); }
+  .ycu-viz i.m { background: color-mix(in srgb, var(--brand) 45%, var(--line)); }
+  .ycu-viz-cap { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-top: 6px; }
+  @media (max-width: 860px) { .ycu-grid { grid-template-columns: 1fr; } }
+
   /* Form (Google Form bağlantısı korunuyor) */
   .booking { background: var(--surface); }
   .booking-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
@@ -239,7 +253,7 @@
       <li><a href="#hakkimizda">Hakkımızda</a></li>
       <li><a href="#kocluk">Koçluk</a></li>
       <li><a href="#surec">Süreç</a></li>
-      <li><a href="#takip">Bizi Takip Edin</a></li>
+      <li><a href="yetkinlik-check-up.html">Yetkinlik Check-Up</a></li>
     </ul>
     <a class="btn btn-primary" href="#randevu">Randevu al</a>
   </div>
@@ -345,6 +359,21 @@
         <li><div class="bar"><b style="width:75%"></b></div><h3>Hedef belirleme</h3><p>Ölçülebilir bir hedef ve birlikte çalışma planı oluşturalım.</p></li>
         <li><div class="bar"><b style="width:100%"></b></div><h3>Koçluk seansları</h3><p>Düzenli seanslarla ilerlemeyi takip edelim, adımları birlikte değerlendirelim.</p></li>
       </ol>
+    </div>
+  </section>
+
+  <section class="ycu-band" id="check-up">
+    <div class="wrap ycu-grid">
+      <div class="ycu-copy">
+        <p class="eyebrow">Yeni · Yetkinlik envanteri</p>
+        <h2>Yetkinlik Check-Up</h2>
+        <p class="lead">Beyaz yaka çalışanlar için hazırlanan bu envanterle 45 yetkinlikte güçlü yönlerini ve gelişim alanlarını keşfet. Testi tamamla, her yetkinlik için puanını, yorumunu ve gelişim önerilerini içeren kişisel raporunu al.</p>
+        <div class="ycu-meta"><span>45 yetkinlik</span><span>5 küme</span><span>225 madde</span><span>~15 dakika</span><span>Kişisel PDF rapor</span></div>
+        <a class="btn btn-brand" href="yetkinlik-check-up.html">Teste başla
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <div class="ycu-viz" role="img" aria-label="45 yetkinliği temsil eden nokta ızgarası"><i class="s"></i><i class=""></i><i class=""></i><i class="s"></i><i class="m"></i><i class=""></i><i class="m"></i><i class=""></i><i class="s"></i><i class=""></i><i class="s"></i><i class="m"></i><i class="m"></i><i class=""></i><i class="s"></i><i class="s"></i><i class="m"></i><i class=""></i><i class=""></i><i class="m"></i><i class="m"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class=""></i><i class="m"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class=""></i><i class="s"></i><i class="m"></i><i class="s"></i><i class="m"></i><i class="m"></i><i class=""></i><i class="m"></i><i class="m"></i><i class="m"></i><i class=""></i><i class="m"></i><i class="s"></i><i class="m"></i><i class="s"></i><i class="s"></i><span class="ycu-viz-cap">45 yetkinlik · güçlü, gelişmekte, gelişim</span></div>
     </div>
   </section>
 

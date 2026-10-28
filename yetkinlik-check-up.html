@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Yetkinlik Check-Up · Kariyeristik</title>
+<meta name="description" content="45 yetkinlikte güçlü ve gelişim alanlarını keşfet. Beyaz yaka çalışanlar için Yetkinlik Check-Up envanteri ve kişisel gelişim raporu.">
+<link rel="canonical" href="https://kariyeristik.com/yetkinlik-check-up.html">
+<link rel="icon" type="image/png" href="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kariyeristik.com/yetkinlik-check-up.html">
+<meta property="og:title" content="Yetkinlik Check-Up · Kariyeristik">
+<meta property="og:description" content="45 yetkinlikte güçlü ve gelişim alanlarını keşfet, kişisel gelişim raporunu al.">
+<meta property="og:image" content="https://kariyeristik.com/logo.png">
+<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#121110">
+<style>html{background:#121110}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Yetkinlik Check-Up: ana siteyle aynı koyu tema ve marka turuncusu; tek sütun, sayfalı test akışı. */
+  :root, :root[data-theme="dark"], :root[data-theme="light"] {
+    --bg: #121110; --surface: #1b1917; --surface-2: #24211e; --ink: #f2ede9; --muted: #b0a79f; --line: #2e2a26;
+    --brand: #f6752c; --on-brand: #141414; --accent-text: #ff9a5c; --brand-soft: #3a2416;
+    --warn: #ffb4a8;
+    --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.6; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 820px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  h1, h2, h3 { font-family: var(--font-display); letter-spacing: -0.02em; text-wrap: balance; margin: 0; }
+  p { margin: 0; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); }
+  .muted { color: var(--muted); }
+
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 19px; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .progress { height: 4px; background: var(--line); }
+  .progress b { display: block; height: 100%; width: 0; background: var(--brand); transition: width .3s ease; }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; font: 600 16px/1 var(--font-body); padding: 15px 24px; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--ink); cursor: pointer; background: transparent; color: var(--ink); }
+  .btn-brand { background: var(--brand); border-color: var(--brand); color: var(--on-brand); }
+  .btn:disabled { opacity: .45; cursor: not-allowed; }
+
+  main { padding-block: clamp(32px, 6vw, 64px) 96px; }
+  .view { display: grid; gap: 28px; }
+
+  /* Giriş */
+  .intro h1 { font-size: clamp(38px, 6.5vw, 64px); line-height: 1; font-weight: 700; }
+  .intro h1 em { font-style: normal; color: var(--brand); }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; }
+  .stats div { background: var(--surface); padding: 16px; min-width: 0; }
+  .stats b { display: block; font-family: var(--font-display); font-size: 28px; line-height: 1.1; }
+  .stats span { font-size: 13px; color: var(--muted); }
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 32px 1fr; gap: 12px; color: var(--muted); }
+  .steps li::before { content: counter(s); width: 28px; height: 28px; border-radius: 50%; border: 1.5px solid var(--brand); color: var(--accent-text); display: grid; place-items: center; font: 500 13px var(--font-mono); }
+  .steps strong { color: var(--ink); font-weight: 600; }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(20px, 4vw, 32px); display: grid; gap: 16px; min-width: 0; }
+  .field { display: grid; gap: 6px; }
+  .field label { font-size: 14px; color: var(--muted); }
+  .field input { border: 1px solid var(--line); border-radius: 12px; padding: 13px 14px; font: 16px var(--font-body); background: var(--bg); color: var(--ink); width: 100%; }
+  .field input:focus { outline: none; border-color: var(--brand); }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  @media (max-width: 560px) { .row2 { grid-template-columns: 1fr; } }
+  .consent { display: grid; grid-template-columns: 22px 1fr; gap: 12px; font-size: 15px; color: var(--muted); align-items: start; }
+  .consent input { width: 20px; height: 20px; accent-color: var(--brand); margin: 2px 0 0; }
+  details { border-top: 1px solid var(--line); padding-top: 12px; font-size: 14px; color: var(--muted); }
+  details summary { cursor: pointer; color: var(--ink); font-weight: 600; }
+  details p { margin-top: 10px; }
+  .resume { border: 1.5px dashed var(--brand); border-radius: 18px; padding: 18px 20px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; }
+  .err { color: var(--warn); font-size: 14px; min-height: 1em; }
+
+  /* Sorular */
+  .q-head { display: grid; gap: 8px; }
+  .q-head h2 { font-size: clamp(26px, 4vw, 34px); }
+  .scale-key { font-size: 14px; color: var(--muted); }
+  .items { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+  .item { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 18px 20px; display: grid; gap: 14px; min-width: 0; }
+  .item.missing { border-color: var(--warn); }
+  .item .stmt { font-size: 18px; line-height: 1.45; }
+  .item .stmt small { display: block; font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+  .likert { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; border: 0; margin: 0; padding: 0; }
+  .likert label { position: relative; display: grid; place-items: center; text-align: center; min-height: 54px; padding: 8px 6px; border: 1px solid var(--line); border-radius: 12px; font-size: 13px; line-height: 1.25; color: var(--muted); cursor: pointer; background: var(--bg); }
+  .likert input { position: absolute; opacity: 0; pointer-events: none; }
+  .likert label:has(input:checked) { background: var(--brand); border-color: var(--brand); color: var(--on-brand); font-weight: 600; }
+  .likert label:has(input:focus-visible) { outline: 2px solid var(--brand); outline-offset: 2px; }
+  @media (max-width: 640px) { .likert { grid-template-columns: 1fr; } .likert label { min-height: 44px; justify-items: start; text-align: left; padding-left: 14px; } }
+  .sig { display: grid; grid-template-columns: 26px 1fr; gap: 14px; align-items: start; cursor: pointer; }
+  .sig input { width: 22px; height: 22px; accent-color: var(--brand); margin: 3px 0 0; }
+  .item:has(.sig input:checked) { border-color: var(--brand); background: var(--brand-soft); }
+  .pager { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .pager .count { font-family: var(--font-mono); font-size: 13px; color: var(--muted); }
+
+  /* Sonuç */
+  .done h1 { font-size: clamp(34px, 5.5vw, 52px); line-height: 1.05; }
+  .code { font-family: var(--font-mono); font-size: clamp(28px, 6vw, 40px); letter-spacing: .08em; color: var(--brand); }
+  .code-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .copy { padding: 10px 16px; font-size: 14px; }
+</style>
+
+</head>
+<body>
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Kariyeristik ana sayfa"><img src="logo.png" alt="">Kariyeristik</a>
+    <span class="eyebrow">Yetkinlik Check-Up</span>
+  </div>
+  <div class="progress" aria-hidden="true"><b id="bar"></b></div>
+</header>
+
+<main class="wrap">
+  <!-- Giriş -->
+  <section class="view intro" id="v-intro">
+    <p class="eyebrow">Beyaz yaka yetkinlik envanteri</p>
+    <h1>Yetkinlik <em>Check-Up</em></h1>
+    <p class="muted" style="max-width:62ch;font-size:18px">İş hayatında en çok fark yaratan 45 yetkinlikte nerede güçlü olduğunu, nerede gelişim alanın bulunduğunu keşfet. Sonunda her yetkinlik için puanını, yorumunu ve sana özel gelişim önerilerini içeren kişisel bir rapor alırsın.</p>
+    <div class="stats">
+      <div><b>45</b><span>yetkinlik</span></div>
+      <div><b>225</b><span>madde, 2 bölüm</span></div>
+      <div><b>~15 dk</b><span>tahmini süre</span></div>
+    </div>
+    <ol class="steps">
+      <li><span><strong>1. Bölüm, 135 ifade:</strong> Her ifadenin seni ne kadar anlattığını seç.</span></li>
+      <li><span><strong>2. Bölüm, 90 durum:</strong> İş hayatında yaşadığın durumları işaretle.</span></li>
+      <li><span><strong>Raporunu al:</strong> Test bitince sana bir test kodu verilir. Mağazamızdan raporunu satın aldığında kişisel PDF raporun e-posta adresine gönderilir.</span></li>
+    </ol>
+
+    <div class="resume" id="resume" hidden>
+      <span><b>Yarım kalan bir testin var.</b> <span class="muted" id="resume-info"></span></span>
+      <span style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-brand" type="button" id="resume-go">Kaldığım yerden devam et</button><button class="btn" type="button" id="resume-reset">Baştan başla</button></span>
+    </div>
+
+    <form class="card" id="start-form" novalidate>
+      <h2 style="font-size:24px">Başlamadan önce</h2>
+      <div class="row2">
+        <div class="field"><label for="ad">Ad soyad</label><input id="ad" type="text" autocomplete="name" required></div>
+        <div class="field"><label for="eposta">E-posta (raporun bu adrese gönderilir)</label><input id="eposta" type="email" autocomplete="email" required></div>
+      </div>
+      <label class="consent"><input type="checkbox" id="kvkk" required><span>Aydınlatma metnini okudum. Cevaplarımın ve iletişim bilgilerimin raporumun hazırlanması ve bana iletilmesi amacıyla işlenmesini kabul ediyorum.</span></label>
+      <details>
+        <summary>KVKK aydınlatma metni</summary>
+        <p>Kariyeristik olarak, Yetkinlik Check-Up kapsamında paylaştığınız ad soyad, e-posta adresi ve test cevaplarınızı 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygun olarak işliyoruz.</p>
+        <p><b>Amaç:</b> Verileriniz yalnızca kişisel yetkinlik raporunuzun hazırlanması, size e-postayla iletilmesi ve talebiniz hâlinde sonuçlarınızın koçluk görüşmesinde değerlendirilmesi amacıyla kullanılır.</p>
+        <p><b>Saklama ve aktarım:</b> Veriler Google altyapısında (Google E-Tablolar ve Gmail) saklanır, üçüncü kişilerle paylaşılmaz ve pazarlama amacıyla kullanılmaz. Raporunuz iletildikten sonra en fazla 2 yıl saklanır.</p>
+        <p><b>Haklarınız:</b> KVKK'nın 11. maddesi kapsamında verilerinize erişme, düzeltilmesini veya silinmesini talep etme haklarına sahipsiniz. Talepleriniz için kariyeristik@gmail.com adresine yazabilirsiniz.</p>
+      </details>
+      <p class="err" id="start-err" aria-live="polite"></p>
+      <button class="btn btn-brand" type="submit">Teste başla</button>
+    </form>
+  </section>
+
+  <!-- Soru sayfaları -->
+  <section class="view" id="v-q" hidden>
+    <div class="q-head">
+      <p class="eyebrow" id="q-part"></p>
+      <h2 id="q-title"></h2>
+      <p class="scale-key" id="q-help"></p>
+    </div>
+    <ol class="items" id="q-items"></ol>
+    <p class="err" id="q-err" aria-live="polite"></p>
+    <div class="pager">
+      <button class="btn" type="button" id="q-back">Geri</button>
+      <span class="count" id="q-count"></span>
+      <button class="btn btn-brand" type="button" id="q-next">Devam</button>
+    </div>
+  </section>
+
+  <!-- Gönderim -->
+  <section class="view done" id="v-done" hidden>
+    <p class="eyebrow">Test tamamlandı</p>
+    <h1>Tebrikler, <span id="done-name"></span>!</h1>
+    <p class="muted" style="font-size:18px;max-width:60ch">Cevapların kaydedildi. Kişisel raporunu almak için son bir adım kaldı.</p>
+    <div class="card">
+      <p class="muted">Test kodun</p>
+      <div class="code-row"><span class="code" id="done-code"></span><button class="btn copy" type="button" id="copy-code">Kodu kopyala</button></div>
+      <ol class="steps">
+        <li><span><strong>Mağazaya git</strong> ve Yetkinlik Check-Up raporunu satın al.</span></li>
+        <li><span><strong>Sipariş notuna test kodunu yaz.</strong> Siparişte testteki e-posta adresini kullanman eşleştirmeyi kolaylaştırır.</span></li>
+        <li><span><strong>Raporun e-postana gelsin.</strong> Ödeme onaylandıktan sonra kişisel PDF raporun <b id="done-email"></b> adresine gönderilir.</span></li>
+      </ol>
+      <a class="btn btn-brand" id="shop-link" href="#" target="_blank" rel="noopener">Raporumu satın al</a>
+    </div>
+    <p class="muted" style="font-size:14px">Test kodunu not almayı unutma. Bir sorun olursa kariyeristik@gmail.com adresine yazabilirsin.</p>
+    <p><button class="btn copy" type="button" id="new-test">Yeni bir test başlat</button></p>
+  </section>
+</main>
+
+<script>
+  // ---- Ayarlar ----
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwfeeQrex8weIcY_bOPXCyfB0jgcrnCk-NYr1eVmiARBKHO54PO6tVbhwhYUMPXCcs/exec";            // Google Apps Script web uygulaması adresi
+  const SHOPIER_URL = "https://www.shopier.com/kariyeristik/52342091";          // Shopier'deki rapor ürününün linki
+  const PREVIEW = false;
+
+  const DATA = {"form":[{"code":"27.2","text":"Zorlayıcı bir hedef koyarken ona ulaşmak için gereken kaynakları da planlarım."},{"code":"8.2","text":"Harcamaları düzenli olarak bütçeyle karşılaştırırım."},{"code":"30.2","text":"Bir işten diğerine geçtiğimde kısa sürede odaklanırım."},{"code":"1.3","text":"Bir konuyu bilmediğimde ya da bir işi beceremediğimde bunu dürüstçe söylerim."},{"code":"26.3","text":"Engellerle karşılaştığımda hedeften vazgeçmek yerine farklı yollar denerim."},{"code":"39.1","text":"Bir işe başlamadan önce neyin yanlış gidebileceğini düşünürüm."},{"code":"5.2","text":"Önemli kararları ilgili onay süreçlerinden geçirir ve kayıt altına alırım."},{"code":"35.1","text":"Çözüme geçmeden önce sorunu net olarak tanımlarım."},{"code":"2.3","text":"Denetim olmadığını bildiğim durumlarda da prosedürlere eksiksiz uyarım."},{"code":"33.2","text":"Tüm bilgiye sahip olmasam da gerektiğinde zamanında karar verebilirim."},{"code":"38.1","text":"Hazırladığım belge ve raporlardaki rakam, isim ve tarih hatalarını fark ederim."},{"code":"40.3","text":"Yapılması gereken bir işi söylenmesini beklemeden başlatırım."},{"code":"11.2","text":"Belirlediğim çalışma düzenine uzun süre bağlı kalırım."},{"code":"9.1","text":"Ekibimi etkileyen bilgileri zamanında paylaşırım."},{"code":"31.2","text":"Bir işin ne kadar süreceğini gerçekçi tahmin ederim."},{"code":"6.3","text":"Başkalarını suçlamak yerine kendi payıma düşen sorumluluğu kabul ederim."},{"code":"8.3","text":"Bütçe sapmasını fark ettiğimde nedenini araştırır ve önlem alırım."},{"code":"8.1","text":"Bir iş ya da proje için gerçekçi bir maliyet tahmini hazırlayabilirim."},{"code":"19.2","text":"Çalışmalarım hakkında başkalarından düzenli olarak görüş isterim."},{"code":"31.1","text":"İşlerimi teslim tarihinden önce bitirecek şekilde zamanlarım."},{"code":"27.3","text":"Ekibimi alışılmış performansın ötesine geçmeye teşvik ederim."},{"code":"6.1","text":"Hedefimi tutturamadığımda bunun nedenlerini bahane üretmeden açıklarım."},{"code":"14.3","text":"Verdiğim bir değerlendirmenin gerekçesini somut örneklerle açıklayabilirim."},{"code":"17.2","text":"Toplantılarda farklı seslerin de duyulmasını sağlarım."},{"code":"13.3","text":"Ekibimi haksız bir uygulamaya karşı savunurum."},{"code":"7.3","text":"Bir taahhüdümü yerine getiremeyeceğimi anladığımda karşı tarafa son anı beklemeden haber veririm."},{"code":"2.2","text":"Uygun bulmadığım bir kuralı çiğnemek yerine değişmesi için doğru kanallardan öneri getiririm."},{"code":"38.3","text":"Başkalarının gözden kaçırdığı tutarsızlıkları yakalarım."},{"code":"41.2","text":"Kriz sırasında önce en kritik adımları belirler ve uygularım."},{"code":"3.3","text":"Önemsiz anlaşmazlıkları büyütmek yerine bırakmayı bilirim."},{"code":"45.1","text":"Sektörümdeki ve çevremdeki gelişmeleri düzenli olarak takip ederim."},{"code":"30.3","text":"Uzmanlık alanım dışındaki görevleri de üstlenip öğrenebilirim."},{"code":"39.2","text":"Önemli riskler için önceden B planı hazırlarım."},{"code":"32.1","text":"Gün içinde önce en önemli işlerimi yaparım."},{"code":"41.1","text":"Beklenmedik bir kriz anında paniğe kapılmadan durumu değerlendiririm."},{"code":"28.3","text":"Koşullar değiştiğinde planımı güncellerim."},{"code":"36.1","text":"Bir bilgiyi kabul etmeden önce kaynağını ve güvenilirliğini sorgularım."},{"code":"29.1","text":"Yoğun baskı altında da sakin kalıp düşünerek hareket ederim."},{"code":"7.2","text":"Tutamayacağımı bildiğim bir söz vermem."},{"code":"9.2","text":"Olumsuz gelişmeleri de olumlular kadar açık paylaşırım."},{"code":"12.3","text":"İşimi teslim ettikten sonra da sonucun beklendiği gibi olup olmadığını takip ederim."},{"code":"26.2","text":"Hedefime ne kadar yaklaştığımı düzenli olarak ölçerim."},{"code":"12.2","text":"Projelerimin sonucunu kendi başarım ya da başarısızlığım gibi önemserim."},{"code":"32.2","text":"Acil görünen her işin önemli olmadığını ayırt edebilirim."},{"code":"43.1","text":"İş süreçlerindeki gereksiz adımları ve tekrarları fark edip ayıklarım."},{"code":"10.3","text":"Zor koşullarda bile üstlendiğim işi yarım bırakmam."},{"code":"38.2","text":"Bir işi teslim etmeden önce ayrıntılı olarak kontrol ederim."},{"code":"37.1","text":"\"Yeterince iyi\" ile yetinmeyip işimi iyileştirmenin yollarını ararım."},{"code":"3.2","text":"Sinirlendiğimde tepki vermeden önce sakinleşmeyi beklerim."},{"code":"42.2","text":"Duygularımın davranışlarımı ne zaman etkilediğini fark ederim."},{"code":"25.1","text":"Sorun yaşadığım kişiyle konuyu doğrudan ve yapıcı biçimde konuşurum."},{"code":"43.2","text":"Tekrar eden işleri otomatikleştirmenin ya da kolaylaştırmanın yollarını ararım."},{"code":"41.3","text":"Kriz anında ilgili kişilere hızlı ve doğru bilgi veririm."},{"code":"10.1","text":"Görevlerimi kimse hatırlatmadan yerine getiririm."},{"code":"37.2","text":"Bir hatanın nedenini bulup tekrarlanmaması için süreçte değişiklik yaparım."},{"code":"21.1","text":"Müzakereye girmeden önce kendi sınırlarımı ve alternatiflerimi belirlerim."},{"code":"3.1","text":"Bir tartışma kişiselleşmeye başladığında konuyu yeniden işe odaklarım."},{"code":"15.1","text":"Karşımdaki konuşurken sözünü kesmeden sonuna kadar dinlerim."},{"code":"42.1","text":"Güçlü yönlerimi ve gelişmem gereken alanları net olarak bilirim."},{"code":"24.1","text":"Bildiklerimi ve kaynaklarımı ekip arkadaşlarımla paylaşırım."},{"code":"35.2","text":"Bir sorun için birden fazla çözüm seçeneği üretirim."},{"code":"23.1","text":"Kendi birimim dışındaki kişilerle de bilinçli olarak ilişki kurarım."},{"code":"18.2","text":"Olumsuz geribildirimi ertelemeden, olayın üzerinden çok zaman geçmeden veririm."},{"code":"6.2","text":"Yaptığım işin ilerlemesini ilgili kişilere sorulmadan raporlarım."},{"code":"10.2","text":"Sorumluluğumdaki bir işin aksadığını gördüğümde hemen müdahale ederim."},{"code":"29.2","text":"Stresli olduğumu fark eder ve bununla başa çıkmak için somut adımlar atarım."},{"code":"34.2","text":"Bir konuda yorum yapmadan önce ilgili verileri toplar ve incelerim."},{"code":"21.2","text":"Karşı tarafın gerçek ihtiyaçlarını anlamak için sorular sorarım."},{"code":"18.3","text":"İyi yapılan işleri de belirterek takdir ederim."},{"code":"12.1","text":"Bir sorunu gördüğümde \"bu benim işim değil\" demeden çözümüne katkı sağlarım."},{"code":"23.2","text":"Doğrudan yetkim olmayan konularda da ilgili kişileri harekete geçirebilirim."},{"code":"36.2","text":"Bir öneride ya da raporda örtük varsayımları fark ederim."},{"code":"37.3","text":"İşimi değerlendirirken müşterinin ya da kullanıcının beklentisini ölçü alırım."},{"code":"22.2","text":"Kalabalık bir grup önünde rahat ve kendinden emin konuşurum."},{"code":"34.1","text":"Karmaşık bir sorunu daha küçük ve yönetilebilir parçalara ayırırım."},{"code":"40.2","text":"İş süreçlerinde iyileştirme fırsatı gördüğümde kimse istemeden öneri getiririm."},{"code":"22.1","text":"Sunumlarımı dinleyicilerin ihtiyacına ve bilgi düzeyine göre hazırlarım."},{"code":"24.2","text":"İş yükü ağırlaşan ekip arkadaşıma, istemesini beklemeden yardım teklif ederim."},{"code":"25.3","text":"Gerginleşen bir ilişkiyi onarmak için ilk adımı atabilirim."},{"code":"18.1","text":"Geribildirimi kişiliğe değil, gözlemlediğim somut davranışa yönelik veririm."},{"code":"34.3","text":"Bir olayın görünen nedeninin ötesindeki kök nedenleri ararım."},{"code":"19.1","text":"Eleştirildiğimde savunmaya geçmeden önce söyleneni anlamaya çalışırım."},{"code":"20.3","text":"Fikirlerimi baskı kurmadan, karşımdakini ikna ederek kabul ettiririm."},{"code":"16.2","text":"Başkalarının çıkarlarını da gözeterek hareket ederim."},{"code":"16.3","text":"Zor zamanlarda ekip arkadaşlarımın yanında olurum."},{"code":"2.1","text":"Kurallar işimi yavaşlattığında da onları atlamam."},{"code":"14.1","text":"Birini değerlendirirken kişisel duygularımı değil, somut performansını esas alırım."},{"code":"25.2","text":"Sorunları dile getirirken bir çözüm önerisiyle gelirim."},{"code":"28.2","text":"Planlarken olası aksaklıklar için yedek süre ve seçenek bırakırım."},{"code":"7.1","text":"Verdiğim sözleri, küçük olsalar bile yerine getiririm."},{"code":"20.2","text":"Anlatımımı karşımdakinin önceliklerine ve kaygılarına göre uyarlarım."},{"code":"40.1","text":"Bir sorun ortaya çıkmadan önce belirtilerini fark edip önlem alırım."},{"code":"13.2","text":"Popüler olmayacağını bilsem de gerekli olan kararı alırım."},{"code":"23.3","text":"İlişki ağımdaki kişilere karşılık beklemeden destek olurum."},{"code":"24.3","text":"Başarıyı ekip başarısı olarak görür, ekip arkadaşlarımın katkısını görünür kılarım."},{"code":"4.3","text":"Paydaşlarla görüşmelerde kurumumu hazırlıklı, güven veren ve profesyonel bir tutumla temsil ederim."},{"code":"15.2","text":"Anladığımdan emin olmak için duyduklarımı kendi cümlelerimle özetlerim."},{"code":"31.3","text":"Zamanımı verimsiz kullanan alışkanlıklarımı fark edip azaltırım."},{"code":"4.1","text":"Ekibimin ihtiyaçlarını ve başarılarını üst yönetime ve diğer birimlere etkili biçimde aktarırım."},{"code":"45.2","text":"Müşterilerin ya da kullanıcıların karşılanmamış ihtiyaçlarını fark ederim."},{"code":"22.3","text":"Karmaşık konuları sade ve anlaşılır biçimde anlatabilirim."},{"code":"32.3","text":"Önceliklerimle çelişen taleplere gerekçesini açıklayarak \"hayır\" diyebilirim."},{"code":"17.1","text":"İnsanlar hakkında kalıp yargılarla hareket etmekten kaçınırım."},{"code":"16.1","text":"İnsanların benimle paylaştığı özel bilgileri saklı tutarım."},{"code":"15.3","text":"Konuşmanın içeriği kadar karşımdakinin duygusuna da dikkat ederim."},{"code":"11.3","text":"Uzun vadeli bir hedef için kısa vadeli keyiflerimden vazgeçebilirim."},{"code":"17.3","text":"Dışlayıcı bir dil ya da davranışla karşılaştığımda buna sessiz kalmam."},{"code":"44.2","text":"Farklı alanlardaki fikirleri birleştirerek yeni fikirler geliştiririm."},{"code":"14.2","text":"Aynı durumdaki kişilere aynı ölçütleri uygularım."},{"code":"29.3","text":"Zor bir dönemden sonra kısa sürede toparlanırım."},{"code":"21.3","text":"Her iki tarafın da kazançlı çıkacağı çözümler ararım."},{"code":"30.1","text":"Aynı dönemde birden fazla projeyi yürütürken hiçbirini aksatmam."},{"code":"39.3","text":"Riskten tamamen kaçmak yerine hesaplanmış risk alabilirim."},{"code":"1.2","text":"Kendi işime yarayacak olsa da gerçeği çarpıtan bilgi vermem."},{"code":"44.1","text":"Bir soruna alışılmışın dışında çözümler üretirim."},{"code":"5.1","text":"Bir karar alırken yetki sınırlarımı bilir, bu sınırların dışına çıkmam."},{"code":"35.3","text":"Karşılaştığım sorunları başkalarına devretmek yerine çözüm için harekete geçerim."},{"code":"13.1","text":"Doğru olmadığını düşündüğüm bir kararı, karşımda üst yönetici olsa bile dile getiririm."},{"code":"5.3","text":"Çıkar çatışması doğurabilecek bir durumu fark ettiğimde bunu bildiririm."},{"code":"4.2","text":"Kişisel görüşüm farklı olsa da kurum adına konuşurken kurumun kararlarını doğru ve tutarlı aktarırım."},{"code":"27.1","text":"Kendime rahat ulaşabileceğim değil, beni geliştirecek hedefler koyarım."},{"code":"1.1","text":"Yaptığım bir hatayı, fark edilmeyecek olsa bile açıkça kabul ederim."},{"code":"45.3","text":"Fark ettiğim bir fırsatı somut bir öneriye dönüştürürüm."},{"code":"19.3","text":"Haklı bulduğum bir eleştiri sonrasında davranışımı değiştiririm."},{"code":"26.1","text":"Bir işe başlarken hangi sonuca ulaşmak istediğimi netleştiririm."},{"code":"33.3","text":"Karar verirken ilk izlenimimin beni yanıltabileceğini göz önünde bulundururum."},{"code":"33.1","text":"Karar vermeden önce farklı seçenekleri ve olası sonuçlarını karşılaştırırım."},{"code":"42.3","text":"Davranışlarımın başkalarını nasıl etkilediğinin farkındayım."},{"code":"36.3","text":"Herkesin kabul ettiği bir görüşü de gerektiğinde sorgularım."},{"code":"20.1","text":"Bir fikri savunurken somut veri ve örneklerle desteklerim."},{"code":"9.3","text":"Bilgiyi kendi konumumu güçlendirmek için saklamam."},{"code":"44.3","text":"Fikirlerimi küçük denemelerle test etmekten çekinmem."},{"code":"43.3","text":"Zaman, malzeme ve bütçe gibi kaynakları israf etmeden kullanırım."},{"code":"28.1","text":"Bir işe başlamadan önce adımlarını ve sürelerini belirlerim."},{"code":"11.1","text":"Canım istemese de yapmam gereken işe başlarım."}],"signals":[{"code":"S45.1","text":"Bir pazar değişimini fark etmedim ve bu fırsatı rakipler değerlendirdi; kurum olarak pazar payı kaybettik."},{"code":"S35.1","text":"Bir sorunu yanlış tanımladım ve uyguladığım çözüm işe yaramadı; zaman ve kaynak boşa harcandı."},{"code":"S15.1","text":"Müşterinin ya da yöneticimin talebini yanlış anladım; işi baştan yapmak zorunda kaldım."},{"code":"S32.1","text":"Günüm acil ama önemsiz işlerle geçti; stratejik önemdeki işleri sürekli erteledim."},{"code":"S18.1","text":"Bir performans sorununu zamanında söylemedim ve sorun yıl sonu değerlendirmesinde sürpriz olarak ortaya çıktı; çalışan haksızlığa uğradığını düşündü."},{"code":"S36.2","text":"Grup içinde varsayımları sorgulamadım; \"grup düşüncesi\" nedeniyle riskli bir kararı oybirliğiyle aldık."},{"code":"S14.2","text":"Verdiğim bir performans notunun gerekçesini açıklayamadım; not itiraza ve şikâyete dönüştü, yönetsel güvenilirliğim zedelendi."},{"code":"S16.2","text":"Çevremde güven ortamı oluşturamadım; herkes kendini yazılı kayıt ve onaylarla korumaya çalıştı, işler yavaşladı ve iş birliği azaldı."},{"code":"S11.2","text":"Başladığım gelişim planlarını (eğitim, sertifika, yeni alışkanlık) yarıda bıraktım; kariyer hedeflerimden uzaklaştım."},{"code":"S24.1","text":"Bilgiyi ekibimle paylaşmadım; aynı iş iki kez yapıldı ya da ekip içinde birbiriyle çelişen çözümler üretildi."},{"code":"S10.1","text":"Hatırlatılmadığı için bir işi yapmadım; zincirleme gecikmeler oldu ve yöneticim beni sürekli takip etmek zorunda kaldı."},{"code":"S28.2","text":"Plansız çalıştım ve ekip arkadaşlarımı da sürekli acil işlere çektim; ekipte stres ve verimsizlik arttı."},{"code":"S32.2","text":"Her talebe \"evet\" dedim; iş yüküm kontrolden çıktı ve kritik bir teslimi kaçırdım."},{"code":"S1.1","text":"Bir hatamı gizledim ve hata sonradan ortaya çıktı; düzeltme gecikti ve söylediğim her şey sorgulanmaya başladı."},{"code":"S36.1","text":"Doğrulamadığım bir bilgiye dayanarak karar aldım; karar yanlış çıktı ve hem ben hem de kurum zor durumda kaldık."},{"code":"S31.2","text":"İşlerim sürekli mesai dışına taştı; iş-yaşam dengem bozuldu ve tükenmişlik yaşamaya başladım."},{"code":"S37.2","text":"Yaptığım iş kalitesiz olduğu için başkaları tarafından yeniden yapılmak zorunda kaldı; ekipte iş yükü ve gerginlik arttı."},{"code":"S23.2","text":"İşim ve fikirlerim kendi birimimin dışında bilinmedi; yeni rol ve terfi fırsatlarında akla gelmedim."},{"code":"S44.1","text":"Değişen müşteri ihtiyaçlarına eski çözümlerle yanıt verdim; ürün ya da hizmetimiz rekabette geride kaldı."},{"code":"S21.1","text":"Bir pazarlığa hazırlıksız girdim ve gereğinden fazla taviz verdim; anlaşma kurum için zararlı oldu."},{"code":"S42.1","text":"Kendimi olduğumdan farklı değerlendirdim; gelişim ihtiyacımı görmediğim için performans sorunum sürdü."},{"code":"S8.2","text":"Gerçekçi olmayan bir maliyet tahmini yaptım ve kârsız bir işe girdik; bütçe taleplerime duyulan güven azaldı."},{"code":"S2.1","text":"Bir onay ya da güvenlik adımını atladım; bu yüzden iş kazası, denetim bulgusu veya yasal yaptırımla karşılaştım."},{"code":"S45.2","text":"Yalnızca mevcut işi sürdürmeye odaklandım; yeni projelerde ve büyüme alanlarında rol alamadım."},{"code":"S22.1","text":"Dağınık ya da fazla teknik bir sunum yaptım; üst yönetim projeye onay vermedi veya bütçe ayırmadı."},{"code":"S19.2","text":"Eleştiriye savunmacı tepki verdim ve toplantılarda gerginlik yarattım; \"konuşulamayan biri\" olarak görüldüm."},{"code":"S27.1","text":"Hep güvenli hedefler seçtim; performansım durağanlaştı, ekibimle birlikte gelişen rakiplerin gerisinde kaldık."},{"code":"S43.1","text":"Verimsiz bir şekilde çalıştım ve aynı iş gereğinden uzun sürdü; maliyetler arttı ve rekabet gücümüz düştü."},{"code":"S10.2","text":"Özensizliğim nedeniyle başkalarının iş yükü arttı; ekipte adaletsizlik algısı ve gerginlik oluştu."},{"code":"S40.1","text":"Fark ettiğim bir sorun üzerinde harekete geçmedim; sorun büyüdü ve sonradan \"neden önceden bir şey yapmadın\" sorusuyla karşılaştım."},{"code":"S30.1","text":"Paralel yürüttüğüm işlerden birini gözden kaçırdım; teslimlerde gecikme ve kalite sorunu oluştu."},{"code":"S38.2","text":"Dikkatsizlik hatalarımı tekrarladım; işim her seferinde başkası tarafından kontrol edildi ve güvenilirliğim azaldı."},{"code":"S3.1","text":"Küçük bir görüş ayrılığını kişisel bir kavgaya dönüştürdüm; ekip içinde gruplaşma ve iletişim kopukluğu başladı."},{"code":"S25.1","text":"Bir sorunu konuşmadım; sorun zamanla birikti, ani bir kopuşa dönüştü ve ortak işler aksadı."},{"code":"S6.2","text":"Yöneticim işin durumunu benden değil, sorun büyüdükten sonra başkalarından öğrendi; bana verilen yetki ve inisiyatif daraltıldı."},{"code":"S3.2","text":"Öfkeyle verdiğim bir tepki bir iş arkadaşımla ya da müşteriyle ilişkimi kalıcı olarak zedeledi; \"zor biri\" olarak etiketlendim."},{"code":"S38.1","text":"Bir sözleşmede ya da faturada küçük bir rakam hatası yaptım; hata ciddi maddi kayba ya da hukuki soruna yol açtı."},{"code":"S29.1","text":"Baskı altında aceleci ve öfkeli tepkiler verdim; bu tepkiler hatalı kararlara ve ilişki sorunlarına yol açtı."},{"code":"S14.1","text":"Değerlendirmelerimde kayırmacılık yaptığım düşünüldü; yüksek performanslı çalışanların motivasyonu düştü, bazıları kurumdan ayrıldı."},{"code":"S9.2","text":"Bir sorunu gizledim ve sorun büyüdükten sonra ortaya çıktı; çözüm maliyeti arttı ve \"bilgi saklayan\" biri olarak görüldüm."},{"code":"S4.1","text":"Dış paydaşlarla bir toplantıda tutarsız ya da özensiz davrandım; kurum hakkında olumsuz algı oluştu ve bir iş birliği fırsatı kaçtı."},{"code":"S17.2","text":"Dışlandığını hisseden bir çalışma arkadaşım kendini geri çekti ya da kurumdan ayrıldı; ayrımcılık şikâyetiyle karşılaştım."},{"code":"S9.1","text":"Ekibimi etkileyen bir değişikliği paylaşmadım ve ekip bunu dedikodudan öğrendi; söylentiler yayıldı, motivasyon ve güven düştü."},{"code":"S16.1","text":"Bana emanet edilen gizli bir bilgi benim üzerimden yayıldı; bana bir daha önemli bilgi emanet edilmedi."},{"code":"S25.2","text":"Sorunları çözüm önermeden yalnızca şikâyet olarak dile getirdim; \"sorun çıkaran\" olarak algılandım ve görüşlerim dikkate alınmadı."},{"code":"S2.2","text":"Kural dışı uygulamalar yaptım; ekipte \"herkes yapıyor\" algısı oluştu, kontrol sistemi zayıfladı ve sorumluluk bana yöneldi."},{"code":"S7.1","text":"Söz verdiğim bir teslimi yapmadım; bana bağlı çalışan ekip ya da müşteri de kendi taahhüdünü kaçırdı."},{"code":"S4.2","text":"Ekibimin başarılarını ve kaynak ihtiyaçlarını üst yönetime aktarmadım; ekibim görünmez kaldı, bütçe ve terfi kararlarında geride kaldık."},{"code":"S20.2","text":"İkna etmek için baskıya ya da makam gücüne başvurdum; direnç oluştu, karar kâğıt üzerinde kaldı ve uygulamada sahiplenilmedi."},{"code":"S34.1","text":"Bir sorunun yalnızca belirtilerini giderdim, kök nedenini çözmedim; aynı sorun tekrar tekrar ortaya çıktı."},{"code":"S34.2","text":"Veriye dayanmayan yorumlarla bir rapor hazırladım; yönetim yanlış yönlendirildi ve kaynaklar yanlış alana aktarıldı."},{"code":"S24.2","text":"Bireysel başarımı öne çıkardım; ekip arkadaşlarım bana destek vermekten kaçındı ve ortak projelerde dışlandım."},{"code":"S40.2","text":"Talimat bekledim ve değişen koşullara geç uyum sağladım; yeni beceri ve sorumluluk kazanma fırsatlarını kaçırdım."},{"code":"S29.2","text":"Uzun süren stresimi yönetemedim; tükenmişlik yaşadım, sağlığım ve iş performansım olumsuz etkilendi."},{"code":"S26.1","text":"Yoğun çalışmama rağmen hedefimi tutturamadım; çabam sonuca katkısı olmayan işlere dağıldı."},{"code":"S44.2","text":"Rutin işlerin dışına çıkamadım; yenilik projelerinde yer almadım ve kariyer gelişimim sınırlı kaldı."},{"code":"S13.1","text":"Yanlış olduğunu bildiğim bir karara itiraz etmedim; proje başarısız olduğunda \"neden söylemedin\" sorusuyla karşılaştım."},{"code":"S33.2","text":"Yeterli değerlendirme yapmadan aceleci bir karar aldım; karar maliyetli bir hataya dönüştü."},{"code":"S13.2","text":"Zor kararları (ör. düşük performansla yüzleşme) erteledim; sorun büyüdü ve ekipte liderliğime olan güven azaldı."},{"code":"S8.1","text":"Bütçe aşımını ancak yıl sonunda fark ettim; projeler durduruldu ya da başka birimlerin kaynaklarından kesinti yapıldı."},{"code":"S31.1","text":"Teslim tarihlerini sürekli kaçırdım; verdiğim zaman taahhütlerine güvenilmedi."},{"code":"S39.2","text":"Riskten aşırı kaçındım; değerli fırsatları kaçırdık ve yeniliklerde geride kaldık."},{"code":"S27.2","text":"Kaynak planlaması yapmadan aşırı hedefler koydum; ekipte tükenmişlik ve motivasyon kaybı yaşandı."},{"code":"S37.1","text":"Hatalı bir ürün ya da hizmetin müşteriye ulaşmasına neden oldum; şikâyet, iade ve itibar kaybı yaşandı."},{"code":"S11.1","text":"İşlerimi erteledim ve son güne yığıldılar; teslimlerim aceleye geldi ve kalite düştü."},{"code":"S15.2","text":"Dinlenmediğini hisseden çalışma arkadaşlarım sorunlarını benimle paylaşmayı bıraktı; sorunları ancak krize dönüştüğünde fark ettim."},{"code":"S33.1","text":"Bir kararı erteledim; fırsat kaybına yol açtı ve ekibim belirsizlik içinde bekledi."},{"code":"S28.1","text":"Bir projeyi planlamadan başlattım; eksik kaynak ya da atlanan bir adım son anda fark edildi ve teslim tarihi kaçtı."},{"code":"S35.2","text":"Karşılaştığım her sorunu yöneticime taşıdım; yöneticimin iş yükü arttı ve özerkliğim azaldı."},{"code":"S17.1","text":"Ekibimdeki farklı görüşlerin dile getirilmesini sağlamadım; benzer düşünen bir grup olarak kör noktalarımızı fark etmeden hatalı karar aldık."},{"code":"S5.1","text":"Yetki sınırımı aşarak bir karar aldım; karar iç denetimde bulgu olarak çıktı ve geri alınması zaman ve para kaybına yol açtı."},{"code":"S20.1","text":"İyi bir fikrimi yeterince destekleyemedim; fikrim reddedildi ya da başka birinin önerisi olarak hayata geçti."},{"code":"S22.2","text":"Topluluk önünde konuşmaktan kaçındım; yaptığım işin görünürlüğünü kaybettim ve kariyer fırsatlarını kaçırdım."},{"code":"S5.2","text":"Bir çıkar çatışmasını bildirmedim; ortaya çıktığında benim ve kurumun güvenilirliği sorgulandı, disiplin süreci başladı."},{"code":"S19.1","text":"Çevremdekiler bana geribildirim vermekten vazgeçti; kör noktalarım büyüdü ve aynı hataları tekrarladım."},{"code":"S18.2","text":"Kişiliğe yönelik ya da kırıcı bir eleştiri yaptım; karşımdaki savunmaya geçti, davranış değişmedi ve ilişkimiz zedelendi."},{"code":"S12.1","text":"Birimler arasında kalan bir sorunu sahiplenmedim; müşteri şikâyeti büyüdü ve çözümsüz kaldı."},{"code":"S39.1","text":"Öngörülebilir bir riske hazırlık yapmadım; risk gerçekleşti, proje durdu ve maliyet katlandı."},{"code":"S23.1","text":"Diğer birimlerden destek gereken bir projede kimseyi tanımadığım için onaylar ve kaynaklar gecikti."},{"code":"S41.2","text":"Kriz sırasında paydaşlara geç ya da çelişkili bilgi verdim; müşteri güveni ve kurum itibarı zarar gördü."},{"code":"S43.2","text":"Kaynakları israf ettim; bütçe zorlandı ve bunun yükünü verimli çalışan ekip arkadaşlarım taşıdı."},{"code":"S12.2","text":"Yalnızca bana söyleneni yaptım; terfi ve kritik görev seçimlerinde inisiyatif alan çalışma arkadaşlarımın gerisinde kaldım."},{"code":"S41.1","text":"Bir kriz anında paniğe kapıldım ve dağınık müdahale ettim; küçük bir aksaklık büyük bir kesintiye dönüştü."},{"code":"S26.2","text":"İlerlememi izlemedim ve sapmayı dönem sonunda fark ettim; düzeltmek için zaman kalmadı."},{"code":"S21.2","text":"Bir müzakereyi \"kazan-kaybet\" tutumuyla yürüttüm; tedarikçi ya da müşteriyle ilişkimiz bozuldu ve uzun vadeli iş birliğini kaybettik."},{"code":"S42.2","text":"Davranışlarımın ekip üzerindeki olumsuz etkisini fark etmedim; ilişkiler bozuldu ve ekipten ayrılmalar yaşandı."},{"code":"S1.2","text":"Çarpıtılmış bilgiye dayanarak yanlış karar aldım; ekip ve kurum olarak maddi kayıp ve itibar kaybı yaşadık."},{"code":"S6.1","text":"Başarısız bir projede sorumluluğu başkalarına attım; ekip içi güven sarsıldı ve aynı hata tekrarlandı."},{"code":"S30.2","text":"Değişen rol beklentilerine uyum sağlayamadım; yeniden yapılanmada geride kaldım."},{"code":"S7.2","text":"Sözlerimi tekrar tekrar tutmadım; taahhütlerim ciddiye alınmadı ve önemli işler bana verilmedi."}]};
+  const LIKERT = [
+    { v: 5, t: "Beni tamamen anlatıyor" },
+    { v: 4, t: "Beni biraz anlatıyor" },
+    { v: 3, t: "Kararsızım" },
+    { v: 2, t: "Beni tanımlamıyor" },
+    { v: 1, t: "Beni asla tanımlamıyor" },
+  ];
+  const PER_ITEM_PAGE = 15, PER_SIG_PAGE = 30;
+  const itemPages = Math.ceil(DATA.form.length / PER_ITEM_PAGE);
+  const sigPages = Math.ceil(DATA.signals.length / PER_SIG_PAGE);
+  const TOTAL_PAGES = itemPages + sigPages;
+  const KEY = "ycu-durum-v1";
+
+  const $ = id => document.getElementById(id);
+  let state = load() || fresh();
+
+  function fresh() { return { name: "", email: "", consentAt: "", page: -1, answers: {}, signals: {}, code: "", submitted: false }; }
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function newCode() {
+    const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+    const buf = new Uint32Array(6); crypto.getRandomValues(buf);
+    return "YCU-" + Array.from(buf, n => chars[n % chars.length]).join("");
+  }
+
+  function show(id) {
+    ["v-intro", "v-q", "v-done"].forEach(v => { $(v).hidden = v !== id; });
+    window.scrollTo({ top: 0 });
+  }
+  function setBar() {
+    const p = state.submitted ? 1 : Math.max(0, state.page) / TOTAL_PAGES;
+    $("bar").style.width = (p * 100).toFixed(1) + "%";
+  }
+
+  // ---- Giriş ----
+  function initIntro() {
+    if (state.submitted && state.code) return renderDone();
+    if (state.page >= 0) {
+      $("resume").hidden = false;
+      $("resume-info").textContent = "Sayfa " + (state.page + 1) + " / " + TOTAL_PAGES + ", " + Object.keys(state.answers).length + " ifade cevaplandı.";
+      $("start-form").hidden = true;
+    }
+    $("ad").value = state.name; $("eposta").value = state.email;
+    show("v-intro"); setBar();
+  }
+  $("resume-go").addEventListener("click", () => renderPage());
+  $("resume-reset").addEventListener("click", () => {
+    state = fresh(); save();
+    $("resume").hidden = true; $("start-form").hidden = false;
+    $("ad").value = ""; $("eposta").value = ""; $("kvkk").checked = false; setBar();
+  });
+  $("start-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const name = $("ad").value.trim(), email = $("eposta").value.trim();
+    if (name.length < 2) return ($("start-err").textContent = "Ad soyadını yaz.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return ($("start-err").textContent = "Geçerli bir e-posta adresi yaz; raporun bu adrese gönderilecek.");
+    if (!$("kvkk").checked) return ($("start-err").textContent = "Devam etmek için aydınlatma metnini onaylaman gerekiyor.");
+    $("start-err").textContent = "";
+    Object.assign(state, { name, email, consentAt: new Date().toISOString(), page: 0, code: state.code || newCode() });
+    save(); renderPage();
+  });
+
+  // ---- Sayfalar ----
+  function renderPage() {
+    const p = state.page, list = $("q-items");
+    list.innerHTML = ""; $("q-err").textContent = "";
+    if (p < itemPages) {
+      const start = p * PER_ITEM_PAGE, slice = DATA.form.slice(start, start + PER_ITEM_PAGE);
+      $("q-part").textContent = "1. Bölüm · İfadeler";
+      $("q-title").textContent = "Bu ifadeler seni ne kadar anlatıyor?";
+      $("q-help").textContent = "Doğru ya da yanlış cevap yok. İş hayatındaki gerçek davranışını düşünerek ilk aklına geleni seç.";
+      slice.forEach((it, i) => {
+        const n = start + i + 1, name = "q-" + it.code.replace(".", "-");
+        const li = document.createElement("li"); li.className = "item"; li.dataset.code = it.code;
+        li.innerHTML = '<p class="stmt" id="' + name + '-t"><small>' + n + ' / ' + DATA.form.length + '</small></p>' +
+          '<fieldset class="likert" aria-labelledby="' + name + '-t">' + LIKERT.map(o =>
+            '<label><input type="radio" name="' + name + '" id="' + name + '-' + o.v + '" value="' + o.v + '"' + (state.answers[it.code] === o.v ? " checked" : "") + '>' + o.t + '</label>').join("") + '</fieldset>';
+        li.querySelector(".stmt").append(document.createTextNode(it.text));
+        li.querySelectorAll("input").forEach(inp => inp.addEventListener("change", () => {
+          state.answers[it.code] = Number(inp.value); li.classList.remove("missing"); save(); count();
+        }));
+        list.append(li);
+      });
+      $("q-next").textContent = "Devam";
+    } else {
+      const sp = p - itemPages, start = sp * PER_SIG_PAGE, slice = DATA.signals.slice(start, start + PER_SIG_PAGE);
+      $("q-part").textContent = "2. Bölüm · Durumlar (" + (sp + 1) + " / " + sigPages + ")";
+      $("q-title").textContent = "Bu durumlardan hangilerini yaşadın?";
+      $("q-help").textContent = "Yalnızca iş hayatında gerçekten yaşadığın durumları işaretle. İşaretlemediğin durumlar yaşanmamış kabul edilir.";
+      slice.forEach((s, i) => {
+        const id = "s-" + s.code.replace(".", "-");
+        const li = document.createElement("li"); li.className = "item";
+        li.innerHTML = '<label class="sig" for="' + id + '"><input type="checkbox" id="' + id + '"' + (state.signals[s.code] ? " checked" : "") + '><span class="stmt"></span></label>';
+        li.querySelector(".stmt").textContent = s.text;
+        li.querySelector("input").addEventListener("change", e => {
+          if (e.target.checked) state.signals[s.code] = 1; else delete state.signals[s.code];
+          save(); count();
+        });
+        list.append(li);
+      });
+      $("q-next").textContent = p === TOTAL_PAGES - 1 ? "Testi tamamla" : "Devam";
+    }
+    $("q-back").disabled = false;
+    count(); show("v-q"); setBar();
+  }
+  function count() {
+    const p = state.page;
+    if (p < itemPages) {
+      const start = p * PER_ITEM_PAGE, slice = DATA.form.slice(start, start + PER_ITEM_PAGE);
+      const done = slice.filter(it => state.answers[it.code]).length;
+      $("q-count").textContent = "Sayfa " + (p + 1) + " / " + TOTAL_PAGES + " · " + done + " / " + slice.length + " cevaplandı";
+    } else {
+      $("q-count").textContent = "Sayfa " + (p + 1) + " / " + TOTAL_PAGES + " · " + Object.keys(state.signals).length + " durum işaretlendi";
+    }
+  }
+  $("q-back").addEventListener("click", () => {
+    if (state.page === 0) { state.page = 0; save(); return initIntroFromTest(); }
+    state.page--; save(); renderPage();
+  });
+  function initIntroFromTest() {
+    $("resume").hidden = false; $("start-form").hidden = true;
+    $("resume-info").textContent = "Sayfa 1 / " + TOTAL_PAGES + ", " + Object.keys(state.answers).length + " ifade cevaplandı.";
+    show("v-intro"); setBar();
+  }
+  $("q-next").addEventListener("click", () => {
+    const p = state.page;
+    if (p < itemPages) {
+      const missing = [...$("q-items").children].filter(li => !state.answers[li.dataset.code]);
+      missing.forEach(li => li.classList.add("missing"));
+      if (missing.length) {
+        $("q-err").textContent = missing.length + " ifade cevaplanmadı. Devam etmek için hepsini cevapla.";
+        missing[0].scrollIntoView({ behavior: "smooth", block: "center" });
+        return;
+      }
+    }
+    if (p < TOTAL_PAGES - 1) { state.page++; save(); renderPage(); return; }
+    submit();
+  });
+
+  // ---- Gönderim ----
+  function submit() {
+    const missing = DATA.form.filter(it => !state.answers[it.code]);
+    if (missing.length) { $("q-err").textContent = "1. bölümde " + missing.length + " ifade eksik."; return; }
+    const payload = { testCode: state.code, name: state.name, email: state.email, consentAt: state.consentAt,
+      answers: state.answers, signals: Object.keys(state.signals) };
+    const btn = $("q-next"); btn.disabled = true; btn.textContent = "Gönderiliyor…";
+    const finish = () => { state.submitted = true; save(); renderDone(); };
+    if (PREVIEW) { setTimeout(finish, 600); return; }
+    fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
+      .then(finish)
+      .catch(() => {
+        btn.disabled = false; btn.textContent = "Tekrar dene";
+        $("q-err").textContent = "Cevapların gönderilemedi. İnternet bağlantını kontrol edip tekrar dene; cevapların bu cihazda kayıtlı.";
+      });
+  }
+  function renderDone() {
+    $("done-name").textContent = state.name.split(" ")[0];
+    $("done-code").textContent = state.code;
+    $("done-email").textContent = state.email;
+    $("shop-link").href = SHOPIER_URL;
+    show("v-done"); setBar();
+  }
+  $("copy-code").addEventListener("click", () => {
+    const b = $("copy-code");
+    navigator.clipboard.writeText(state.code).then(() => { b.textContent = "Kopyalandı"; })
+      .catch(() => { const r = document.createRange(); r.selectNodeContents($("done-code")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); });
+  });
+
+  $("new-test").addEventListener("click", () => { state = fresh(); save(); location.reload(); });
+
+  initIntro();
+</script>
+
+</body>
+</html>
