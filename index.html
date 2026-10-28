@@ -1,196 +1,485 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kariyeristik – Kişisel Gelişim & Kariyer Koçluğu</title>
-  <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #f5f4f0;
-      color: #1a1a1a;
-      line-height: 1.7;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Kariyeristik · Kariyer ve Öz Liderlik Koçluğu</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="apple-touch-icon" href="logo.png">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kariyeristik.com/">
+<meta property="og:title" content="Kariyeristik · Kariyerini inşa et, potansiyelini keşfet">
+<meta property="og:description" content="ICF akredite koç ve mentörlerle kariyer ve öz liderlik koçluğu. Ücretsiz ön görüşme randevusu alın.">
+<meta property="og:image" content="https://kariyeristik.com/logo.png">
+<meta name="twitter:card" content="summary">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<meta name="description" content="Kariyeristik: ICF akredite koç ve mentörlerle kariyer ve öz liderlik koçluğu. Ücretsiz ön görüşme randevusu alın.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700&family=Figtree:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Layout: tek sayfa, Instagram'daki minimal geometrik dil (halkalar, noktalar, barlar); marka turuncusu renkli alanlarda, siyah mürekkep. */
+  :root {
+    --bg: #ffffff;
+    --surface: #faf6f3;
+    --ink: #141414;
+    --muted: #5f5a56;
+    --line: #ece4de;
+    --brand: #f6752c;          /* logo turuncusu: dolgu ve renkli alanlar */
+    --on-brand: #141414;       /* turuncu üstünde siyah, logodaki gibi */
+    --accent-text: #b44d10;    /* küçük turuncu metin için koyu ton */
+    --brand-soft: #fde9dc;
+    --ok-bg: #eaf3de; --ok-fg: #3b6d11; --ok-line: #c0dd97;
+    --font-display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+    --font-body: "Figtree", "Segoe UI", system-ui, sans-serif;
+    --font-mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+    --wrap: 1120px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #121110; --surface: #1b1917; --ink: #f2ede9; --muted: #b0a79f; --line: #2e2a26;
+      --brand: #f6752c; --on-brand: #141414; --accent-text: #ff9a5c; --brand-soft: #3a2416;
+      --ok-bg: #1d2b14; --ok-fg: #b4dc8a; --ok-line: #3d5a24;
+      color-scheme: dark;
     }
-    .container { max-width: 820px; margin: 0 auto; padding: 2rem 1.25rem; }
+  }
+  :root[data-theme="dark"] {
+    --bg: #121110; --surface: #1b1917; --ink: #f2ede9; --muted: #b0a79f; --line: #2e2a26;
+    --brand: #f6752c; --on-brand: #141414; --accent-text: #ff9a5c; --brand-soft: #3a2416;
+    --ok-bg: #1d2b14; --ok-fg: #b4dc8a; --ok-line: #3d5a24;
+    color-scheme: dark;
+  }
 
-    .hero {
-      background: #1a1a2e;
-      color: #fff;
-      text-align: center;
-      padding: 4rem 2rem;
-      border-radius: 16px;
-      margin-bottom: 1.5rem;
-    }
-    .hero .brand { font-size: 12px; letter-spacing: 3px; color: #a0a8d0; font-weight: 500; margin-bottom: 0.75rem; }
-    .hero h1 { font-size: 30px; font-weight: 500; line-height: 1.3; margin-bottom: 1rem; }
-    .hero p { font-size: 16px; color: #a0a8d0; margin-bottom: 2rem; max-width: 540px; margin-left: auto; margin-right: auto; }
-    .hero a { display: inline-block; background: #fff; color: #1a1a2e; padding: 12px 28px; border-radius: 8px; font-size: 15px; font-weight: 500; text-decoration: none; }
-    .hero a:hover { opacity: 0.9; }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { animation: none !important; transition: none !important; } }
+  body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 17px; line-height: 1.65; }
+  a { color: inherit; }
+  :focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
 
-    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
-    .card { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 14px; padding: 1.25rem; }
-    .card-icon { font-size: 28px; margin-bottom: 0.75rem; }
-    .card h3 { font-size: 15px; font-weight: 500; margin-bottom: 0.4rem; }
-    .card p { font-size: 13px; color: #666; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  section { padding-block: clamp(56px, 9vw, 104px); }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent-text); margin: 0 0 14px; }
+  h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; letter-spacing: -0.02em; }
+  h2 { font-size: clamp(30px, 4.4vw, 46px); line-height: 1.08; font-weight: 600; }
+  h3 { font-size: 21px; font-weight: 600; line-height: 1.25; }
+  p { margin: 0; }
+  .lead { color: var(--muted); max-width: 60ch; font-size: 18px; }
 
-    .about { background: #eeecf8; border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem; }
-    .section-label { font-size: 12px; letter-spacing: 1.5px; color: #888; margin-bottom: 0.25rem; }
-    .about h2 { font-size: 20px; font-weight: 500; margin-bottom: 0.75rem; color: #1a1a2e; }
-    .about p { font-size: 15px; color: #444; margin-bottom: 0.75rem; }
-    .about p:last-child { margin-bottom: 0; }
-    .icf-badge { display: inline-flex; align-items: center; gap: 8px; background: #1a1a2e; color: #a0a8d0; font-size: 12px; padding: 8px 14px; border-radius: 8px; margin-top: 1rem; }
-    .icf-badge span { color: #fff; font-weight: 500; }
+  .btn { display: inline-flex; align-items: center; gap: 10px; font: 600 16px/1 var(--font-body); padding: 15px 24px; border-radius: 999px; text-decoration: none; border: 1.5px solid var(--ink); cursor: pointer; transition: transform .15s ease, background .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--ink); color: var(--bg); }
+  .btn-brand { background: var(--brand); color: var(--on-brand); border-color: var(--brand); }
+  .btn-ghost { background: transparent; color: var(--ink); }
 
-    .form-section { background: #fff; border: 0.5px solid #e0ddd6; border-radius: 14px; padding: 2rem; margin-bottom: 1.5rem; }
-    .form-section h2 { font-size: 20px; font-weight: 500; margin-bottom: 0.25rem; }
-    .form-section .sub { font-size: 14px; color: #888; margin-bottom: 1.5rem; }
+  /* Header */
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+  header.site { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 9; background: color-mix(in srgb, var(--bg) 90%, transparent); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 12px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font-family: var(--font-display); font-weight: 700; font-size: 20px; letter-spacing: -0.02em; }
+  .brand img { width: 40px; height: 40px; border-radius: 10px; flex: none; }
+  .nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; font-size: 15px; }
+  .nav ul a { text-decoration: none; color: var(--muted); }
+  .nav ul a:hover { color: var(--ink); }
+  .nav .btn { padding: 11px 18px; font-size: 14px; }
+  @media (max-width: 860px) { .nav ul { display: none; } }
 
-    .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 1rem; }
-    label { font-size: 13px; color: #555; }
-    label .req { color: #534AB7; }
-    input[type="text"], input[type="email"], input[type="tel"], textarea {
-      border: 0.5px solid #ccc; border-radius: 8px; padding: 10px 12px;
-      font-size: 15px; font-family: inherit; background: #faf9f7;
-      outline: none; transition: border-color 0.2s; width: 100%;
-    }
-    input:focus, textarea:focus { border-color: #534AB7; }
-    textarea { resize: vertical; }
+  /* Hero */
+  .hero { padding-block: clamp(48px, 8vw, 96px) clamp(56px, 8vw, 96px); }
+  .hero-grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .hero h1 { font-size: clamp(42px, 7vw, 84px); line-height: .98; font-weight: 700; letter-spacing: -0.035em; }
+  .hero h1 em { font-style: normal; color: var(--brand); }
+  .hero .lead { margin-top: 24px; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 28px; font-size: 14px; color: var(--muted); }
+  .badge b { font-family: var(--font-mono); font-size: 12px; letter-spacing: .1em; background: var(--brand-soft); color: var(--accent-text); padding: 5px 10px; border-radius: 999px; font-weight: 500; }
+  .rings { width: 100%; max-width: 440px; aspect-ratio: 1; justify-self: center; }
+  .rings circle.r { fill: none; stroke: var(--line); stroke-width: 1.5; }
+  .rings circle.r.on { stroke: var(--brand); stroke-width: 2; stroke-dasharray: 4 7; animation: spin 60s linear infinite; transform-origin: 220px 220px; }
+  .rings circle.dot { fill: var(--ink); }
+  .rings circle.sat { fill: var(--brand); }
+  .rings text { font-family: var(--font-mono); font-size: 11px; letter-spacing: .12em; fill: var(--muted); }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @media (max-width: 860px) { .hero-grid { grid-template-columns: 1fr; } .rings { max-width: 300px; order: -1; } }
 
-    .options { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; }
-    .option-label { display: flex; align-items: center; gap: 10px; font-size: 15px; color: #333; cursor: pointer; }
-    .option-label input[type="radio"] { width: 18px; height: 18px; min-width: 18px; accent-color: #534AB7; cursor: pointer; border: none; padding: 0; background: none; }
+  /* Hakkımızda */
+  .about { background: var(--surface); }
+  .about-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+  .logo-tile { max-width: 100%; aspect-ratio: 1; border-radius: 28px; overflow: hidden; }
+  .logo-tile img { width: 100%; height: 100%; display: block; }
+  .about-body { display: grid; gap: 20px; min-width: 0; }
+  .about-body p { color: var(--muted); max-width: 62ch; }
+  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 18px; overflow: hidden; margin-top: 12px; }
+  .facts div { background: var(--bg); padding: 18px; min-width: 0; }
+  .facts b { display: block; font-family: var(--font-display); font-size: 18px; font-weight: 600; line-height: 1.25; }
+  .facts span { font-size: 14px; color: var(--muted); }
+  @media (max-width: 860px) { .about-grid { grid-template-columns: 1fr; } .logo-tile { max-width: 280px; } .facts { grid-template-columns: 1fr; } }
 
-    .btn { background: #1a1a2e; color: #fff; border: none; padding: 13px 24px; border-radius: 8px; font-size: 15px; cursor: pointer; font-family: inherit; width: 100%; margin-top: 0.75rem; }
-    .btn:hover { opacity: 0.85; }
-    .form-note { font-size: 12px; color: #999; text-align: center; margin-top: 1rem; }
+  /* Koçluk alanları */
+  .head { display: grid; gap: 16px; margin-bottom: 44px; }
+  .areas { display: grid; grid-template-columns: repeat(2, 1fr); border-top: 1px solid var(--line); }
+  .area { display: grid; grid-template-columns: 64px 1fr; gap: 20px; padding: 30px 28px 30px 0; border-bottom: 1px solid var(--line); min-width: 0; }
+  .area:nth-child(odd) { border-right: 1px solid var(--line); }
+  .area:nth-child(even) { padding-left: 28px; }
+  .area svg { width: 56px; height: 56px; }
+  .area p { color: var(--muted); margin-top: 8px; font-size: 16px; }
+  .area .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+  .area .tags span { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--brand-soft); color: var(--accent-text); }
+  @media (max-width: 760px) { .areas { grid-template-columns: 1fr; } .area:nth-child(odd) { border-right: 0; } .area:nth-child(even) { padding-left: 0; } .area { padding-right: 0; } }
 
-    .success-msg { display: none; background: #eaf3de; border: 0.5px solid #c0dd97; border-radius: 10px; padding: 1.25rem; text-align: center; color: #3B6D11; font-size: 15px; margin-top: 1rem; }
+  /* Yaklaşım: marka turuncusu alan */
+  .principles { background: var(--brand); color: var(--on-brand); }
+  .principles .eyebrow { color: var(--on-brand); opacity: .75; }
+  .principles .lead { color: var(--on-brand); opacity: .8; }
+  .pr-list { list-style: none; padding: 0; margin: 40px 0 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+  .pr-list li { border-top: 2px solid var(--on-brand); padding-top: 18px; font-family: var(--font-display); font-size: 20px; line-height: 1.25; font-weight: 600; min-width: 0; }
+  .pr-list li i { display: block; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--on-brand); margin-bottom: 16px; }
+  @media (max-width: 960px) { .pr-list { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .pr-list { grid-template-columns: 1fr; } }
 
-    footer { text-align: center; padding: 1.5rem 0; border-top: 0.5px solid #e0ddd6; font-size: 13px; color: #888; }
-  </style>
+  /* Süreç */
+  .steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; counter-reset: s; }
+  .steps li { counter-increment: s; display: grid; gap: 10px; align-content: start; min-width: 0; }
+  .steps li::before { content: counter(s, decimal-leading-zero); font-family: var(--font-mono); font-size: 13px; color: var(--accent-text); }
+  .steps .bar { height: 8px; border-radius: 999px; background: var(--brand-soft); overflow: hidden; }
+  .steps .bar b { display: block; height: 100%; background: var(--brand); border-radius: 999px; }
+  .steps p { color: var(--muted); font-size: 15px; }
+  @media (max-width: 860px) { .steps { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .steps { grid-template-columns: 1fr; } }
+
+  /* Form (Google Form bağlantısı korunuyor) */
+  .booking { background: var(--surface); }
+  .booking-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
+  .booking-aside { display: grid; gap: 18px; position: sticky; top: 100px; min-width: 0; }
+  .booking-aside ul { list-style: none; padding: 0; margin: 8px 0 0; display: grid; gap: 12px; color: var(--muted); }
+  .booking-aside li { display: flex; gap: 12px; }
+  .booking-aside li::before { content: ""; width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--brand); flex: none; margin-top: 8px; }
+  .form-card { background: var(--bg); border: 1px solid var(--line); border-radius: 24px; padding: clamp(22px, 4vw, 40px); min-width: 0; }
+  .field { display: flex; flex-direction: column; gap: 6px; margin-bottom: 18px; }
+  .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 560px) { .field-row { grid-template-columns: 1fr; } }
+  .form-card label { font-size: 14px; color: var(--muted); }
+  .form-card label .req { color: var(--accent-text); }
+  .form-card input[type="text"], .form-card input[type="tel"], .form-card textarea {
+    border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font: 16px var(--font-body);
+    background: var(--surface); color: var(--ink); outline: none; transition: border-color .2s; width: 100%;
+  }
+  .form-card input:focus, .form-card textarea:focus { border-color: var(--brand); }
+  .form-card textarea { resize: vertical; }
+  .options { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 2px; }
+  .option-label { display: inline-flex; align-items: center; gap: 10px; font-size: 15px; color: var(--ink); cursor: pointer; padding: 10px 16px; border: 1px solid var(--line); border-radius: 999px; }
+  .option-label:has(input:checked) { border-color: var(--brand); background: var(--brand-soft); }
+  .option-label input { width: 18px; height: 18px; accent-color: var(--brand); margin: 0; }
+  .form-card .btn { width: 100%; justify-content: center; margin-top: 8px; }
+  .form-note { font-size: 13px; color: var(--muted); text-align: center; margin-top: 14px; }
+  .success-msg { background: var(--ok-bg); border: 1px solid var(--ok-line); border-radius: 14px; padding: 20px; text-align: center; color: var(--ok-fg); }
+  @media (max-width: 860px) { .booking-grid { grid-template-columns: 1fr; } .booking-aside { position: static; } }
+
+  /* Bülten + kartvizit */
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .newsletter { border: 1px solid var(--line); border-radius: 24px; padding: clamp(24px, 4vw, 40px); display: grid; gap: 16px; align-content: start; min-width: 0; }
+  .nl-form { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+  .nl-form input { flex: 1 1 220px; min-width: 0; border: 1px solid var(--line); border-radius: 999px; padding: 13px 18px; font: 16px var(--font-body); background: var(--surface); color: var(--ink); }
+  .nl-form .btn { padding: 13px 20px; }
+  .nl-msg { font-size: 14px; color: var(--muted); }
+  .vcard { background: var(--brand); color: var(--on-brand); border-radius: 24px; padding: clamp(24px, 4vw, 40px); display: grid; gap: 28px; align-content: start; position: relative; overflow: hidden; min-width: 0; }
+  .vcard::after { content: ""; position: absolute; right: -120px; top: -160px; width: 320px; height: 320px; border-radius: 50%; border: 1.5px solid var(--on-brand); opacity: .35; pointer-events: none; }
+  .vcard .eyebrow { color: var(--on-brand); opacity: .75; }
+  .vcard h3 { font-size: 30px; }
+  .vc-main { display: grid; gap: 12px; justify-items: start; position: relative; z-index: 1; }
+  .vc-main .role { font-size: 16px; opacity: .85; max-width: 44ch; }
+  .vc-main .btn { margin-top: 6px; background: var(--on-brand); color: #fff; border-color: var(--on-brand); }
+  .vc-links { border-top: 1.5px solid color-mix(in srgb, var(--on-brand) 30%, transparent); padding-top: 22px; }
+  .socials { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 12px; }
+  .socials a { text-decoration: none; display: grid; justify-items: center; gap: 8px; font-size: 13px; font-weight: 600; }
+  .socials .ic { width: 56px; height: 56px; border-radius: 50%; border: 1.5px solid var(--on-brand); display: grid; place-items: center; transition: background .15s ease, color .15s ease; }
+  .socials .ic svg { width: 24px; height: 24px; }
+  .socials a:hover .ic { background: var(--on-brand); color: var(--brand); }
+  .mail-text { margin-top: 16px; font-size: 15px; opacity: .85; }
+  @media (max-width: 860px) { .duo { grid-template-columns: 1fr; } }
+
+  footer { border-top: 1px solid var(--line); padding-block: 28px; font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; }
+  footer .fbrand { display: inline-flex; align-items: center; gap: 10px; }
+  footer .fbrand img { width: 28px; height: 28px; border-radius: 7px; }
+  footer nav { display: flex; gap: 18px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+</style>
+
 </head>
 <body>
-  <div class="container">
-
-    <div class="hero">
-      <p class="brand">KARİYERİSTİK</p>
-      <h1>Kariyerini inşa et,<br>potansiyelini keşfet.</h1>
-      <p>Bireysel potansiyelin açığa çıkarılmasında stratejik gelişim uzmanlığıyla profesyonel ortağın.</p>
-      <a href="#form">Ücretsiz ön görüşme randevusu al</a>
-    </div>
-
-    <div class="services">
-      <div class="card">
-        <div class="card-icon">🧭</div>
-        <h3>Kariyer Koçluğu</h3>
-        <p>Kariyer hedeflerini netleştir, profesyonel gelişim yolculuğunu birlikte planla.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🧠</div>
-        <h3>Mentörlük</h3>
-        <p>Deneyimli mentörlerle iş yaşamındaki zorlu süreçleri daha kolay aş.</p>
-      </div>
-      <div class="card">
-        <div class="card-icon">🎯</div>
-        <h3>Kişisel Gelişim</h3>
-        <p>Değişim ve dönüşüm yolculuğunda içsel potansiyelini açığa çıkar.</p>
-      </div>
-    </div>
-
-    <div class="about">
-      <p class="section-label">HAKKIMIZDA</p>
-      <h2>Kariyeristik nedir?</h2>
-      <p>Stratejik gelişim uzmanlığını odağına alan Kariyeristik, bireysel potansiyelin açığa çıkarılmasında profesyonel ortağınızdır. Yetkinliklerini akademik araştırmalarla ve kurumsal deneyimlerle kanıtlamış ekibimiz, profesyonel gelişim yolculuğunuzdaki karmaşık süreçlere destek sunar.</p>
-      <p>Gelişim alanındaki güncel pratikleri, koçluk ve mentörlük metodolojileriyle birleştirerek özgün ve derinlikli bir gelişim alanı yaratıyoruz.</p>
-      <div class="icf-badge">🏅 <span>ICF Akredite</span> — Uluslararası Koçluk Federasyonu onaylı koç ve mentörler</div>
-    </div>
-
-    <div class="form-section" id="form">
-      <p class="section-label">BAŞVURU</p>
-      <h2>Ön görüşme talep formu</h2>
-      <p class="sub">Formu doldur, ihtiyacına en uygun profesyonelle eşleştirelim.</p>
-
-      <form id="koçluk-form">
-
-        <div class="field">
-          <label for="adsoyad">Adınız soyadınız <span class="req">*</span></label>
-          <input type="text" id="adsoyad" placeholder="Ad Soyad" required>
-        </div>
-
-        <div class="field">
-          <label for="tanitim">Kendinizi kısaca tanıtınız. <span class="req">*</span></label>
-          <textarea id="tanitim" rows="3" placeholder="Kendiniz hakkında kısa bilgi..." required></textarea>
-        </div>
-
-        <div class="field">
-          <label for="telefon">Telefon numaranız <span class="req">*</span></label>
-          <input type="tel" id="telefon" placeholder="05xx xxx xx xx" required>
-        </div>
-
-        <div class="field">
-          <label for="meslek">Mesleğiniz <span class="req">*</span></label>
-          <input type="text" id="meslek" placeholder="Mesleğinizi yazınız" required>
-        </div>
-
-        <div class="field">
-          <label>Daha önce koçluk veya mentörlük aldınız mı? <span class="req">*</span></label>
-          <div class="options">
-            <label class="option-label"><input type="radio" name="onceki" value="Evet" required> Evet</label>
-            <label class="option-label"><input type="radio" name="onceki" value="Hayır"> Hayır</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label>Almak istediğiniz hizmet nedir? <span class="req">*</span></label>
-          <div class="options">
-            <label class="option-label"><input type="radio" name="hizmet" value="Koçluk" required> Koçluk</label>
-            <label class="option-label"><input type="radio" name="hizmet" value="Mentörlük"> Mentörlük</label>
-          </div>
-        </div>
-
-        <div class="field">
-          <label for="konu">Koçluk veya mentörlük almak istediğiniz konu / konular nelerdir? <span class="req">*</span></label>
-          <textarea id="konu" rows="4" placeholder="Kişisel yaşam hedefleri, iş yaşamı, kariyer hedefleri..." required></textarea>
-        </div>
-
-        <button type="submit" class="btn">Başvuru gönder</button>
-        <p class="form-note">Verileriniz yalnızca size uygun profesyonel eşleşmesi için kullanılır.</p>
-      </form>
-
-      <div class="success-msg" id="success">
-        ✅ Başvurunuz alındı! En kısa sürede sizinle iletişime geçeceğiz.
-      </div>
-    </div>
-
-    <footer>© 2026 Kariyeristik · Tüm hakları saklıdır.</footer>
-
+<header class="site">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="Kariyeristik ana sayfa">
+      <img src="logo.png" alt="">
+      Kariyeristik
+    </a>
+    <ul>
+      <li><a href="#hakkimizda">Hakkımızda</a></li>
+      <li><a href="#kocluk">Koçluk</a></li>
+      <li><a href="#surec">Süreç</a></li>
+      <li><a href="#bulten">Bülten</a></li>
+      <li><a href="#kanallar">Mağaza</a></li>
+    </ul>
+    <a class="btn btn-primary" href="#randevu">Randevu al</a>
   </div>
+</header>
 
-  <script>
-    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSepcKpPOWNmA9ygATQBb-1yWNL5xKQWb0trfbE_gKYURf5z3g/formResponse";
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Kariyer &amp; öz liderlik koçluğu</p>
+        <h1>Kariyerini inşa et, <em>potansiyelini</em> keşfet.</h1>
+        <p class="lead">Bireysel potansiyelin açığa çıkarılmasında stratejik gelişim uzmanlığıyla profesyonel ortağın. Bir sonraki adımını birlikte tasarlayalım.</p>
+        <div class="cta-row">
+          <a class="btn btn-brand" href="#randevu">Ücretsiz ön görüşme al
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a class="btn btn-ghost" href="#kocluk">Koçluk alanları</a>
+        </div>
+        <p class="badge"><b>ICF AKREDİTE</b> Uluslararası Koçluk Federasyonu onaylı koç ve mentörler</p>
+      </div>
+      <svg class="rings" viewBox="0 0 440 440" role="img" aria-label="Konfor alanı, gelişim alanı ve potansiyel halkaları">
+        <circle class="r" cx="220" cy="220" r="210"/>
+        <circle class="r on" cx="220" cy="220" r="150"/>
+        <circle class="r" cx="220" cy="220" r="90"/>
+        <circle class="dot" cx="220" cy="220" r="34"/>
+        <circle class="sat" cx="326" cy="114" r="12"/>
+        <text x="220" y="148" text-anchor="middle">KONFOR ALANI</text>
+        <text x="220" y="86" text-anchor="middle">GELİŞİM ALANI</text>
+        <text x="220" y="26" text-anchor="middle">POTANSİYEL</text>
+      </svg>
+    </div>
+  </section>
 
-    document.getElementById("koçluk-form").addEventListener("submit", function(e) {
-      e.preventDefault();
+  <section class="about" id="hakkimizda">
+    <div class="wrap about-grid">
+      <div class="logo-tile"><img src="logo.png" alt="Kariyeristik logosu"></div>
+      <div class="about-body">
+        <p class="eyebrow">Hakkımızda</p>
+        <h2>Kariyeristik nedir?</h2>
+        <p>Stratejik gelişim uzmanlığını odağına alan Kariyeristik, bireysel potansiyelin açığa çıkarılmasında profesyonel ortağınızdır. Yetkinliklerini akademik araştırmalarla ve kurumsal deneyimlerle kanıtlamış olan ekibimiz, profesyonel gelişim yolculuğunuzdaki karmaşık süreçlere destek sunar.</p>
+        <p>Bünyemizdeki tüm koç ve mentörler, Uluslararası Koçluk Federasyonu (ICF) tarafından akredite edilmiş deneyimli profesyonellerden oluşmaktadır. Gelişim alanındaki güncel pratikleri, koçluk ve mentörlük metodolojileriyle birleştirerek özgün ve derinlikli bir gelişim alanı yaratıyoruz.</p>
+        <div class="facts">
+          <div><b>ICF akredite</b><span>Uluslararası Koçluk Federasyonu onaylı profesyoneller</span></div>
+          <div><b>Koçluk ve mentörlük</b><span>İhtiyacına göre doğru yöntem</span></div>
+          <div><b>Kurumsal deneyim</b><span>Akademik araştırma ve iş dünyası birikimi</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-      const body = new URLSearchParams();
-      body.append("entry.536914581",  document.getElementById("adsoyad").value);
-      body.append("entry.1501634880", document.getElementById("tanitim").value);
-      body.append("entry.125976398",  document.getElementById("telefon").value);
-      body.append("entry.1670221828", document.getElementById("meslek").value);
-      body.append("entry.914647740",  document.querySelector('input[name="onceki"]:checked')?.value || "");
-      body.append("entry.858818009",  document.querySelector('input[name="hizmet"]:checked')?.value || "");
-      body.append("entry.365379154",  document.getElementById("konu").value);
+  <section id="kocluk">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Koçluk alanları</p>
+        <h2>Neler üzerinde çalışabiliriz?</h2>
+        <p class="lead">Her görüşme senin gündeminle başlar. En sık birlikte çalıştığımız konular şunlar.</p>
+      </div>
+      <div class="areas">
+        <article class="area">
+          <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="none" stroke="var(--line)" stroke-width="1.5"/><path d="M28 10 L33 28 L28 46 L23 28 Z" fill="var(--brand)"/><circle cx="28" cy="28" r="3" fill="var(--ink)"/></svg>
+          <div><h3>Kariyer koçluğu</h3><p>Kariyer yönünü netleştirmek, iş değişikliği, terfi ve yeni role geçiş kararlarını sağlam temele oturtmak.</p><div class="tags"><span>Kariyer planı</span><span>İş değişikliği</span><span>Mülakat hazırlığı</span></div></div>
+        </article>
+        <article class="area">
+          <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="none" stroke="var(--line)" stroke-width="1.5"/><circle cx="28" cy="28" r="16" fill="none" stroke="var(--brand)" stroke-width="2.5"/><circle cx="28" cy="28" r="6" fill="var(--ink)"/></svg>
+          <div><h3>Öz liderlik ve kişisel dönüşüm</h3><p>Kendini yönetmek, hedef koymak, motivasyonunu sürdürmek ve değişime direnç yerine uyumla yaklaşmak.</p><div class="tags"><span>Hedef belirleme</span><span>Öz farkındalık</span><span>Değişime uyum</span></div></div>
+        </article>
+        <article class="area">
+          <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="none" stroke="var(--line)" stroke-width="1.5"/><circle cx="22" cy="28" r="11" fill="var(--brand)"/><circle cx="34" cy="28" r="11" fill="none" stroke="var(--ink)" stroke-width="2"/></svg>
+          <div><h3>İletişim ve soft skill gelişimi</h3><p>Dinlemek, geri bildirim vermek ve almak, hayır diyebilmek, çatışmayı yönetmek. İş hayatında en çok fark yaratan beceriler.</p><div class="tags"><span>Geri bildirim</span><span>Sınır koyma</span><span>Çatışma yönetimi</span></div></div>
+        </article>
+        <article class="area">
+          <svg viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="26" fill="none" stroke="var(--line)" stroke-width="1.5"/><rect x="15" y="30" width="6" height="12" rx="3" fill="var(--line)"/><rect x="25" y="22" width="6" height="20" rx="3" fill="var(--brand)" opacity=".55"/><rect x="35" y="14" width="6" height="28" rx="3" fill="var(--brand)"/></svg>
+          <div><h3>Mentörlük</h3><p>İnsan kaynakları bakış açısıyla CV ve LinkedIn profilini güçlendirmek, iş yaşamındaki zorlu dönemleri deneyim paylaşımıyla aşmak.</p><div class="tags"><span>CV ve LinkedIn</span><span>İK bakış açısı</span><span>Yöneticiye geçiş</span></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      fetch(FORM_URL, {
-        method: "POST",
-        mode: "no-cors",
-        body: body
-      }).then(() => {
-        document.getElementById("koçluk-form").style.display = "none";
-        document.getElementById("success").style.display = "block";
+  <section class="principles">
+    <div class="wrap">
+      <p class="eyebrow">Yaklaşımımız</p>
+      <h2>Koçluğa nasıl bakıyoruz?</h2>
+      <p class="lead" style="margin-top:16px">Görüşmelerimizin zemini beş temel ilkeye dayanır.</p>
+      <ul class="pr-list">
+        <li><i></i>İnsanlar olduğu haliyle değerlidir.</li>
+        <li><i></i>Herkes ihtiyaç duyduğu kaynaklara sahiptir.</li>
+        <li><i></i>Herkes o an için en iyi seçimi yapar.</li>
+        <li><i></i>Her davranışın arkasında olumlu bir niyet vardır.</li>
+        <li><i></i>Değişim kaçınılmazdır.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="surec">
+    <div class="wrap">
+      <div class="head">
+        <p class="eyebrow">Süreç</p>
+        <h2>Randevudan hedefe dört adım</h2>
+      </div>
+      <ol class="steps">
+        <li><div class="bar"><b style="width:25%"></b></div><h3>Formu doldur</h3><p>Kendini ve gündemindeki konuyu kısaca anlat.</p></li>
+        <li><div class="bar"><b style="width:50%"></b></div><h3>Ücretsiz ön görüşme</h3><p>Tanışalım, beklentilerini ve sana en uygun profesyoneli belirleyelim.</p></li>
+        <li><div class="bar"><b style="width:75%"></b></div><h3>Hedef belirleme</h3><p>Ölçülebilir bir hedef ve birlikte çalışma planı oluşturalım.</p></li>
+        <li><div class="bar"><b style="width:100%"></b></div><h3>Koçluk seansları</h3><p>Düzenli seanslarla ilerlemeyi takip edelim, adımları birlikte değerlendirelim.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="booking" id="randevu">
+    <div class="wrap booking-grid">
+      <div class="booking-aside">
+        <p class="eyebrow">Ön görüşme talep formu</p>
+        <h2>Randevu talep et</h2>
+        <p class="lead">Stratejik bir değerlendirme ve ücretsiz ön görüşme randevusu için formu doldurabilirsiniz.</p>
+        <ul>
+          <li>Ön görüşme ücretsizdir.</li>
+          <li>İhtiyaçlarınıza en uygun profesyonel eşleşmeyi sağlamak için bilgileriniz analiz edilir.</li>
+          <li>Gelişim yolculuğunuzu başlatmak üzere sizinle iletişime geçilir.</li>
+        </ul>
+      </div>
+
+      <div class="form-card">
+        <form id="koçluk-form">
+          <div class="field-row">
+            <div class="field">
+              <label for="adsoyad">Adınız soyadınız <span class="req">*</span></label>
+              <input type="text" id="adsoyad" placeholder="Ad Soyad" required>
+            </div>
+            <div class="field">
+              <label for="telefon">Telefon numaranız <span class="req">*</span></label>
+              <input type="tel" id="telefon" placeholder="05xx xxx xx xx" required>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="meslek">Mesleğiniz <span class="req">*</span></label>
+            <input type="text" id="meslek" placeholder="Mesleğinizi yazınız" required>
+          </div>
+
+          <div class="field">
+            <label for="tanitim">Kendinizi kısaca tanıtınız. <span class="req">*</span></label>
+            <textarea id="tanitim" rows="3" placeholder="Kendiniz hakkında kısa bilgi..." required></textarea>
+          </div>
+
+          <div class="field">
+            <label>Daha önce koçluk veya mentörlük aldınız mı? <span class="req">*</span></label>
+            <div class="options">
+              <label class="option-label"><input type="radio" id="onceki-evet" name="onceki" value="Evet" required> Evet</label>
+              <label class="option-label"><input type="radio" id="onceki-hayir" name="onceki" value="Hayır"> Hayır</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Almak istediğiniz hizmet nedir? <span class="req">*</span></label>
+            <div class="options">
+              <label class="option-label"><input type="radio" id="hizmet-kocluk" name="hizmet" value="Koçluk" required> Koçluk</label>
+              <label class="option-label"><input type="radio" id="hizmet-mentorluk" name="hizmet" value="Mentörlük"> Mentörlük</label>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="konu">Koçluk veya mentörlük almak istediğiniz konu / konular nelerdir? <span class="req">*</span></label>
+            <textarea id="konu" rows="4" placeholder="Kişisel yaşam hedefleri, iş yaşamı, kariyer hedefleri..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Başvuru gönder</button>
+          <p class="form-note">Verileriniz yalnızca size uygun profesyonel eşleşmesi için kullanılır.</p>
+        </form>
+
+        <div class="success-msg" id="success" hidden>
+          Başvurunuz alındı! En kısa sürede sizinle iletişime geçeceğiz.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="bulten">
+    <div class="wrap duo">
+      <div class="newsletter">
+        <p class="eyebrow">Bülten</p>
+        <h2>Ayda bir, kariyerine iyi gelecek bir mektup</h2>
+        <p class="lead">Soft skill ipuçları, iş dünyasından gözlemler ve kendine sorman gereken sorular. Spam yok, istediğin an ayrılabilirsin.</p>
+        <form class="nl-form" id="nl-form">
+          <input type="email" id="nl-email" placeholder="E-posta adresin" aria-label="E-posta adresin" required>
+          <button class="btn btn-primary" type="submit">Abone ol</button>
+        </form>
+        <p class="nl-msg" id="nl-msg" aria-live="polite">E-posta adresin yalnızca bülten gönderimi için kullanılır.</p>
+      </div>
+
+      <div class="vcard" id="kanallar">
+        <div class="vc-main">
+          <p class="eyebrow">Dijital ürünler</p>
+          <h3>Kariyeristik Mağaza</h3>
+          <p class="role">Kariyer ve kişisel gelişim için hazırladığımız dijital ürünler Shopier mağazamızda.</p>
+          <a class="btn btn-primary" href="https://www.shopier.com/kariyeristik" target="_blank" rel="noopener">Mağazaya git
+            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+        <div class="vc-links">
+          <p class="eyebrow">Bizi takip edin</p>
+          <ul class="socials">
+            <li><a href="https://www.instagram.com/kariyeristik" target="_blank" rel="noopener" aria-label="Instagram: @kariyeristik"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.4" cy="6.6" r="1.3" fill="currentColor"/></svg></span>Instagram</a></li>
+            <li><a href="https://www.youtube.com/@kariyeristik" target="_blank" rel="noopener" aria-label="YouTube: @kariyeristik"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4.5" fill="currentColor"/><path d="M10 9v6l5.2-3z" fill="var(--on-brand)"/></svg></span>YouTube</a></li>
+            <li><a href="https://open.spotify.com/show/6BFrFts6UPBIYVVlykZ9Zj" target="_blank" rel="noopener" aria-label="Spotify: Kariyeristik Podcast"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="currentColor"/><path d="M6.8 9.6c3.6-1.1 7.6-.8 10.6 1M7.4 12.6c3-.8 6.2-.5 8.7.9M8 15.4c2.4-.6 4.7-.4 6.7.7" fill="none" stroke="var(--on-brand)" stroke-width="1.6" stroke-linecap="round"/></svg></span>Spotify</a></li>
+            <li><a href="mailto:kariyeristik@gmail.com" aria-label="E-posta: kariyeristik@gmail.com"><span class="ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></span>E-posta</a></li>
+          </ul>
+          <p class="mail-text">kariyeristik@gmail.com</p>
+        </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span class="fbrand"><img src="logo.png" alt="">© 2026 Kariyeristik · Tüm hakları saklıdır.</span>
+    <nav><a href="https://www.instagram.com/kariyeristik" target="_blank" rel="noopener">Instagram</a><a href="https://www.youtube.com/@kariyeristik" target="_blank" rel="noopener">YouTube</a><a href="https://open.spotify.com/show/6BFrFts6UPBIYVVlykZ9Zj" target="_blank" rel="noopener">Spotify</a><a href="https://www.shopier.com/kariyeristik" target="_blank" rel="noopener">Mağaza</a></nav>
+  </div>
+</footer>
+
+<script>
+  // Bülten: Google Form'a gönderim (yanıtlar Google Sheet'e düşer)
+  const NL_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSel3rpGH3XxpAHnj_ycAAOjFENEZ99-xEzOHczqk9dMnpJ_mQ/formResponse";
+  document.getElementById("nl-form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const body = new URLSearchParams();
+    body.append("entry.1156809096", document.getElementById("nl-email").value);
+    const msg = document.getElementById("nl-msg");
+    fetch(NL_FORM_URL, { method: "POST", mode: "no-cors", body: body })
+      .then(() => { document.getElementById("nl-form").hidden = true; msg.textContent = "Teşekkürler! Bültene abone oldun."; })
+      .catch(() => { msg.textContent = "Bağlantı sorunu oluştu. Lütfen biraz sonra tekrar deneyin."; });
+  });
+
+  // Google Form entegrasyonu (mevcut sitedeki ile aynı)
+  const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSepcKpPOWNmA9ygATQBb-1yWNL5xKQWb0trfbE_gKYURf5z3g/formResponse";
+
+  document.getElementById("koçluk-form").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const body = new URLSearchParams();
+    body.append("entry.536914581",  document.getElementById("adsoyad").value);
+    body.append("entry.1501634880", document.getElementById("tanitim").value);
+    body.append("entry.125976398",  document.getElementById("telefon").value);
+    body.append("entry.1670221828", document.getElementById("meslek").value);
+    body.append("entry.914647740",  document.querySelector('input[name="onceki"]:checked')?.value || "");
+    body.append("entry.858818009",  document.querySelector('input[name="hizmet"]:checked')?.value || "");
+    body.append("entry.365379154",  document.getElementById("konu").value);
+
+    const done = () => {
+      document.getElementById("koçluk-form").hidden = true;
+      document.getElementById("success").hidden = false;
+    };
+    fetch(FORM_URL, { method: "POST", mode: "no-cors", body: body })
+      .then(done)
+      .catch(() => {
+        done();
+        document.getElementById("success").textContent = "Bağlantı sorunu oluştu. Lütfen biraz sonra tekrar deneyin.";
       });
-    });
-  </script>
+  });
+</script>
+
 </body>
 </html>
