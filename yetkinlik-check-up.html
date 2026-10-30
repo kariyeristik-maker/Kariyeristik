@@ -150,7 +150,7 @@
 
     <p id="start-row"><button class="btn btn-brand" type="button" id="start">Teste başla
       <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </button></p>
+    </button> <button class="btn" type="button" id="skip" hidden>Önizleme: rastgele doldur, son adıma geç</button></p>
   </section>
 
   <!-- Soru sayfaları -->
@@ -216,7 +216,12 @@
     <div class="card">
       <p class="muted">Sipariş numaran</p>
       <span class="code" id="done-order"></span>
-      <p class="muted" style="font-size:15px">Rapor birkaç saat içinde gelmezse gereksiz (spam) klasörünü kontrol et ya da sipariş numaranla kariyeristik@gmail.com adresine yaz.</p>
+      <p class="muted" style="font-size:15px">Rapor genellikle 10–15 dakika içinde gelir. 1 saat içinde gelmezse gereksiz (spam) klasörünü kontrol et ya da sipariş numaranla kariyeristik@gmail.com adresine yaz.</p>
+    </div>
+    <div class="card">
+      <p style="font-size:18px;font-weight:600;margin:0">Sonuçlarını bir koçla değerlendirmek ister misin?</p>
+      <p class="muted" style="margin:0">Raporunu bir koçla birlikte değerlendirmek istersen kariyeristik.com üzerinden ücretsiz ön görüşme talep edebilirsin.</p>
+      <p style="margin:0"><a class="btn btn-brand" href="/#randevu">Ücretsiz ön görüşme talep et</a></p>
     </div>
     <p><button class="btn copy" type="button" id="new-test">Yeni bir test başlat</button></p>
   </section>
@@ -400,6 +405,16 @@
     show("v-done"); setBar();
   }
   $("new-test").addEventListener("click", () => { state = fresh(); save(); initIntro(); });
+
+  // Sadece önizlemede: soruları rastgele doldurup rapor adımına atla
+  if (PREVIEW) {
+    $("skip").hidden = false;
+    $("skip").addEventListener("click", () => {
+      DATA.form.forEach(it => { state.answers[it.code] = 1 + Math.floor(Math.random() * 5); });
+      DATA.signals.forEach(s => { if (Math.random() < .2) state.signals[s.code] = 1; });
+      state.page = TOTAL_PAGES; save(); renderClaim();
+    });
+  }
 
   initIntro();
 </script>
