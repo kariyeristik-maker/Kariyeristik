@@ -107,6 +107,13 @@
   .code { font-family: var(--font-mono); font-size: clamp(28px, 6vw, 40px); letter-spacing: .08em; color: var(--brand); }
   .code-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
   .copy { padding: 10px 16px; font-size: 14px; }
+  /* Rapor adımı */
+  .claim-steps { display: grid; gap: 16px; }
+  .claim-step { background: var(--surface); border: 1px solid var(--line); border-radius: 22px; padding: clamp(20px, 4vw, 32px); display: grid; gap: 14px; min-width: 0; }
+  .claim-step h2 { font-size: 22px; display: flex; gap: 12px; align-items: center; }
+  .claim-step h2 i { font-style: normal; width: 32px; height: 32px; border-radius: 50%; background: var(--brand); color: var(--on-brand); display: grid; place-items: center; font: 600 15px var(--font-mono); flex: none; }
+  .claim-step .btn { justify-self: start; }
+  .field small { font-size: 13px; color: var(--muted); }
 </style>
 
 </head>
@@ -133,31 +140,17 @@
     <ol class="steps">
       <li><span><strong>1. Bölüm, 135 ifade:</strong> Her ifadenin seni ne kadar anlattığını seç.</span></li>
       <li><span><strong>2. Bölüm, 90 durum:</strong> İş hayatında yaşadığın durumları işaretle.</span></li>
-      <li><span><strong>Raporunu al:</strong> Test bitince sana bir test kodu verilir. Mağazamızdan raporunu satın aldığında kişisel PDF raporun e-posta adresine gönderilir.</span></li>
+      <li><span><strong>Raporunu al:</strong> Test bitince mağazamızdan raporunu satın al, sipariş numaranı ve iletişim bilgilerini gir. Kişisel PDF raporun e-posta adresine gönderilir.</span></li>
     </ol>
 
     <div class="resume" id="resume" hidden>
-      <span><b>Yarım kalan bir testin var.</b> <span class="muted" id="resume-info"></span></span>
+      <span><b id="resume-title">Yarım kalan bir testin var.</b> <span class="muted" id="resume-info"></span></span>
       <span style="display:flex;gap:10px;flex-wrap:wrap"><button class="btn btn-brand" type="button" id="resume-go">Kaldığım yerden devam et</button><button class="btn" type="button" id="resume-reset">Baştan başla</button></span>
     </div>
 
-    <form class="card" id="start-form" novalidate>
-      <h2 style="font-size:24px">Başlamadan önce</h2>
-      <div class="row2">
-        <div class="field"><label for="ad">Ad soyad</label><input id="ad" type="text" autocomplete="name" required></div>
-        <div class="field"><label for="eposta">E-posta (raporun bu adrese gönderilir)</label><input id="eposta" type="email" autocomplete="email" required></div>
-      </div>
-      <label class="consent"><input type="checkbox" id="kvkk" required><span>Aydınlatma metnini okudum. Cevaplarımın ve iletişim bilgilerimin raporumun hazırlanması ve bana iletilmesi amacıyla işlenmesini kabul ediyorum.</span></label>
-      <details>
-        <summary>KVKK aydınlatma metni</summary>
-        <p>Kariyeristik olarak, Yetkinlik Check-Up kapsamında paylaştığınız ad soyad, e-posta adresi ve test cevaplarınızı 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygun olarak işliyoruz.</p>
-        <p><b>Amaç:</b> Verileriniz yalnızca kişisel yetkinlik raporunuzun hazırlanması, size e-postayla iletilmesi ve talebiniz hâlinde sonuçlarınızın koçluk görüşmesinde değerlendirilmesi amacıyla kullanılır.</p>
-        <p><b>Saklama ve aktarım:</b> Veriler Google altyapısında (Google E-Tablolar ve Gmail) saklanır, üçüncü kişilerle paylaşılmaz ve pazarlama amacıyla kullanılmaz. Raporunuz iletildikten sonra en fazla 2 yıl saklanır.</p>
-        <p><b>Haklarınız:</b> KVKK'nın 11. maddesi kapsamında verilerinize erişme, düzeltilmesini veya silinmesini talep etme haklarına sahipsiniz. Talepleriniz için kariyeristik@gmail.com adresine yazabilirsiniz.</p>
-      </details>
-      <p class="err" id="start-err" aria-live="polite"></p>
-      <button class="btn btn-brand" type="submit">Teste başla</button>
-    </form>
+    <p id="start-row"><button class="btn btn-brand" type="button" id="start">Teste başla
+      <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button></p>
   </section>
 
   <!-- Soru sayfaları -->
@@ -176,22 +169,55 @@
     </div>
   </section>
 
-  <!-- Gönderim -->
-  <section class="view done" id="v-done" hidden>
-    <p class="eyebrow">Test tamamlandı</p>
-    <h1>Tebrikler, <span id="done-name"></span>!</h1>
-    <p class="muted" style="font-size:18px;max-width:60ch">Cevapların kaydedildi. Kişisel raporunu almak için son bir adım kaldı.</p>
-    <div class="card">
-      <p class="muted">Test kodun</p>
-      <div class="code-row"><span class="code" id="done-code"></span><button class="btn copy" type="button" id="copy-code">Kodu kopyala</button></div>
-      <ol class="steps">
-        <li><span><strong>Mağazaya git</strong> ve Yetkinlik Check-Up raporunu satın al.</span></li>
-        <li><span><strong>Sipariş notuna test kodunu yaz.</strong> Siparişte testteki e-posta adresini kullanman eşleştirmeyi kolaylaştırır.</span></li>
-        <li><span><strong>Raporun e-postana gelsin.</strong> Ödeme onaylandıktan sonra kişisel PDF raporun <b id="done-email"></b> adresine gönderilir.</span></li>
-      </ol>
-      <a class="btn btn-brand" id="shop-link" href="#" target="_blank" rel="noopener">Raporumu satın al</a>
+  <!-- Rapor adımı -->
+  <section class="view" id="v-claim" hidden>
+    <div class="q-head">
+      <p class="eyebrow">Test tamamlandı</p>
+      <h1 style="font-size:clamp(32px,5vw,48px);line-height:1.05">Sonuç raporunu al</h1>
+      <p class="muted" style="font-size:18px;max-width:60ch">Tüm soruları yanıtladın. Kişisel sonuç raporunu almak için iki adım kaldı. Cevapların bu cihazda kayıtlı; mağazaya gidip geri döndüğünde kaldığın yerden devam edersin.</p>
     </div>
-    <p class="muted" style="font-size:14px">Test kodunu not almayı unutma. Bir sorun olursa kariyeristik@gmail.com adresine yazabilirsin.</p>
+    <div class="claim-steps">
+      <div class="claim-step">
+        <h2><i>1</i>Siparişini oluştur</h2>
+        <p class="muted">Mağazamızda Yetkinlik Check-Up raporunu satın al. Ödeme tamamlanınca Shopier sana bir sipariş numarası verir; bu numarayı not al.</p>
+        <a class="btn btn-brand" id="shop-link" href="#" target="_blank" rel="noopener">Shopier'de siparişini oluştur
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M5 3h8v8M13 3L4 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <form class="claim-step" id="claim-form" novalidate>
+        <h2><i>2</i>Bilgilerini gir</h2>
+        <div class="field"><label for="siparis">Shopier sipariş numarası</label><input id="siparis" type="text" inputmode="numeric" autocomplete="off" required><small>Sipariş onay e-postasında ve Shopier'deki siparişlerim sayfasında yer alır.</small></div>
+        <div class="row2">
+          <div class="field"><label for="ad">Ad soyad</label><input id="ad" type="text" autocomplete="name" required></div>
+          <div class="field"><label for="eposta">E-posta (raporun bu adrese gönderilir)</label><input id="eposta" type="email" autocomplete="email" required></div>
+        </div>
+        <label class="consent"><input type="checkbox" id="kvkk" required><span>Aydınlatma metnini okudum. Cevaplarımın, sipariş ve iletişim bilgilerimin raporumun hazırlanması ve bana iletilmesi amacıyla işlenmesini kabul ediyorum.</span></label>
+        <details>
+          <summary>KVKK aydınlatma metni</summary>
+          <p>Kariyeristik olarak, Yetkinlik Check-Up kapsamında paylaştığınız ad soyad, e-posta adresi, sipariş numarası ve test cevaplarınızı 6698 sayılı Kişisel Verilerin Korunması Kanunu'na uygun olarak işliyoruz.</p>
+          <p><b>Amaç:</b> Verileriniz yalnızca siparişinizin doğrulanması, kişisel yetkinlik raporunuzun hazırlanması, size e-postayla iletilmesi ve talebiniz hâlinde sonuçlarınızın koçluk görüşmesinde değerlendirilmesi amacıyla kullanılır.</p>
+          <p><b>Saklama ve aktarım:</b> Veriler Google altyapısında (Google E-Tablolar ve Gmail) saklanır, üçüncü kişilerle paylaşılmaz ve pazarlama amacıyla kullanılmaz. Raporunuz iletildikten sonra en fazla 2 yıl saklanır.</p>
+          <p><b>Haklarınız:</b> KVKK'nın 11. maddesi kapsamında verilerinize erişme, düzeltilmesini veya silinmesini talep etme haklarına sahipsiniz. Talepleriniz için kariyeristik@gmail.com adresine yazabilirsiniz.</p>
+        </details>
+        <p class="err" id="claim-err" aria-live="polite"></p>
+        <div class="pager">
+          <button class="btn" type="button" id="claim-back">Cevaplarıma dön</button>
+          <button class="btn btn-brand" type="submit" id="claim-submit">Raporumu gönder</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Talep alındı -->
+  <section class="view done" id="v-done" hidden>
+    <p class="eyebrow">Talebin alındı</p>
+    <h1>Teşekkürler, <span id="done-name"></span>!</h1>
+    <p class="muted" style="font-size:18px;max-width:60ch">Siparişin kontrol edildikten sonra kişisel Yetkinlik Check-Up raporun <b id="done-email"></b> adresine e-postayla gönderilecek.</p>
+    <div class="card">
+      <p class="muted">Sipariş numaran</p>
+      <span class="code" id="done-order"></span>
+      <p class="muted" style="font-size:15px">Rapor birkaç saat içinde gelmezse gereksiz (spam) klasörünü kontrol et ya da sipariş numaranla kariyeristik@gmail.com adresine yaz.</p>
+    </div>
     <p><button class="btn copy" type="button" id="new-test">Yeni bir test başlat</button></p>
   </section>
 </main>
@@ -213,59 +239,55 @@
   const PER_ITEM_PAGE = 15, PER_SIG_PAGE = 30;
   const itemPages = Math.ceil(DATA.form.length / PER_ITEM_PAGE);
   const sigPages = Math.ceil(DATA.signals.length / PER_SIG_PAGE);
-  const TOTAL_PAGES = itemPages + sigPages;
-  const KEY = "ycu-durum-v1";
+  const TOTAL_PAGES = itemPages + sigPages;      // page === TOTAL_PAGES → rapor adımı
+  const KEY = "ycu-durum-v2";
 
   const $ = id => document.getElementById(id);
   let state = load() || fresh();
 
-  function fresh() { return { name: "", email: "", consentAt: "", page: -1, answers: {}, signals: {}, code: "", submitted: false }; }
+  function fresh() { return { id: newId(), page: -1, answers: {}, signals: {}, name: "", email: "", orderNo: "", consentAt: "", submitted: false }; }
   function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
-  function newCode() {
+  function newId() {
     const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
     const buf = new Uint32Array(6); crypto.getRandomValues(buf);
     return "YCU-" + Array.from(buf, n => chars[n % chars.length]).join("");
   }
 
   function show(id) {
-    ["v-intro", "v-q", "v-done"].forEach(v => { $(v).hidden = v !== id; });
+    ["v-intro", "v-q", "v-claim", "v-done"].forEach(v => { $(v).hidden = v !== id; });
     window.scrollTo({ top: 0 });
   }
   function setBar() {
     const p = state.submitted ? 1 : Math.max(0, state.page) / TOTAL_PAGES;
-    $("bar").style.width = (p * 100).toFixed(1) + "%";
+    $("bar").style.width = (Math.min(1, p) * 100).toFixed(1) + "%";
   }
+  function go() { if (state.page >= TOTAL_PAGES) renderClaim(); else renderPage(); }
 
   // ---- Giriş ----
   function initIntro() {
-    if (state.submitted && state.code) return renderDone();
-    if (state.page >= 0) {
-      $("resume").hidden = false;
-      $("resume-info").textContent = "Sayfa " + (state.page + 1) + " / " + TOTAL_PAGES + ", " + Object.keys(state.answers).length + " ifade cevaplandı.";
-      $("start-form").hidden = true;
+    if (state.submitted) return renderDone();
+    const started = state.page >= 0;
+    $("resume").hidden = !started;
+    $("start-row").hidden = started;
+    if (started) {
+      if (state.page >= TOTAL_PAGES) {
+        $("resume-title").textContent = "Testini tamamladın.";
+        $("resume-info").textContent = "Raporunu almak için son adım bekliyor.";
+        $("resume-go").textContent = "Rapor adımına git";
+      } else {
+        $("resume-title").textContent = "Yarım kalan bir testin var.";
+        $("resume-info").textContent = "Sayfa " + (state.page + 1) + " / " + TOTAL_PAGES + ", " + Object.keys(state.answers).length + " ifade cevaplandı.";
+        $("resume-go").textContent = "Kaldığım yerden devam et";
+      }
     }
-    $("ad").value = state.name; $("eposta").value = state.email;
     show("v-intro"); setBar();
   }
-  $("resume-go").addEventListener("click", () => renderPage());
-  $("resume-reset").addEventListener("click", () => {
-    state = fresh(); save();
-    $("resume").hidden = true; $("start-form").hidden = false;
-    $("ad").value = ""; $("eposta").value = ""; $("kvkk").checked = false; setBar();
-  });
-  $("start-form").addEventListener("submit", e => {
-    e.preventDefault();
-    const name = $("ad").value.trim(), email = $("eposta").value.trim();
-    if (name.length < 2) return ($("start-err").textContent = "Ad soyadını yaz.");
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return ($("start-err").textContent = "Geçerli bir e-posta adresi yaz; raporun bu adrese gönderilecek.");
-    if (!$("kvkk").checked) return ($("start-err").textContent = "Devam etmek için aydınlatma metnini onaylaman gerekiyor.");
-    $("start-err").textContent = "";
-    Object.assign(state, { name, email, consentAt: new Date().toISOString(), page: 0, code: state.code || newCode() });
-    save(); renderPage();
-  });
+  $("start").addEventListener("click", () => { state.page = 0; save(); renderPage(); });
+  $("resume-go").addEventListener("click", go);
+  $("resume-reset").addEventListener("click", () => { state = fresh(); save(); initIntro(); });
 
-  // ---- Sayfalar ----
+  // ---- Soru sayfaları ----
   function renderPage() {
     const p = state.page, list = $("q-items");
     list.innerHTML = ""; $("q-err").textContent = "";
@@ -286,13 +308,12 @@
         }));
         list.append(li);
       });
-      $("q-next").textContent = "Devam";
     } else {
       const sp = p - itemPages, start = sp * PER_SIG_PAGE, slice = DATA.signals.slice(start, start + PER_SIG_PAGE);
       $("q-part").textContent = "2. Bölüm · Durumlar (" + (sp + 1) + " / " + sigPages + ")";
       $("q-title").textContent = "Bu durumlardan hangilerini yaşadın?";
       $("q-help").textContent = "Yalnızca iş hayatında gerçekten yaşadığın durumları işaretle. İşaretlemediğin durumlar yaşanmamış kabul edilir.";
-      slice.forEach((s, i) => {
+      slice.forEach(s => {
         const id = "s-" + s.code.replace(".", "-");
         const li = document.createElement("li"); li.className = "item";
         li.innerHTML = '<label class="sig" for="' + id + '"><input type="checkbox" id="' + id + '"' + (state.signals[s.code] ? " checked" : "") + '><span class="stmt"></span></label>';
@@ -303,9 +324,8 @@
         });
         list.append(li);
       });
-      $("q-next").textContent = p === TOTAL_PAGES - 1 ? "Testi tamamla" : "Devam";
     }
-    $("q-back").disabled = false;
+    $("q-next").textContent = p === TOTAL_PAGES - 1 ? "Testi bitir" : "Devam";
     count(); show("v-q"); setBar();
   }
   function count() {
@@ -319,14 +339,9 @@
     }
   }
   $("q-back").addEventListener("click", () => {
-    if (state.page === 0) { state.page = 0; save(); return initIntroFromTest(); }
+    if (state.page === 0) { state.page = -1; save(); return initIntro(); }
     state.page--; save(); renderPage();
   });
-  function initIntroFromTest() {
-    $("resume").hidden = false; $("start-form").hidden = true;
-    $("resume-info").textContent = "Sayfa 1 / " + TOTAL_PAGES + ", " + Object.keys(state.answers).length + " ifade cevaplandı.";
-    show("v-intro"); setBar();
-  }
   $("q-next").addEventListener("click", () => {
     const p = state.page;
     if (p < itemPages) {
@@ -338,40 +353,53 @@
         return;
       }
     }
-    if (p < TOTAL_PAGES - 1) { state.page++; save(); renderPage(); return; }
-    submit();
+    state.page++; save(); go();
   });
 
-  // ---- Gönderim ----
-  function submit() {
+  // ---- Rapor adımı ----
+  function renderClaim() {
+    $("shop-link").href = SHOPIER_URL;
+    $("siparis").value = state.orderNo; $("ad").value = state.name; $("eposta").value = state.email;
+    $("claim-err").textContent = "";
+    show("v-claim"); setBar();
+  }
+  ["siparis", "ad", "eposta"].forEach(id => $(id).addEventListener("input", () => {
+    state.orderNo = $("siparis").value.trim(); state.name = $("ad").value.trim(); state.email = $("eposta").value.trim(); save();
+  }));
+  $("claim-back").addEventListener("click", () => { state.page = TOTAL_PAGES - 1; save(); renderPage(); });
+  $("claim-form").addEventListener("submit", e => {
+    e.preventDefault();
+    const err = $("claim-err");
+    const orderNo = $("siparis").value.trim().replace(/^#/, ""), name = $("ad").value.trim(), email = $("eposta").value.trim();
+    if (!/^[A-Za-z0-9-]{4,30}$/.test(orderNo)) return (err.textContent = "Shopier sipariş numaranı yaz. Numarayı sipariş onay e-postasında bulabilirsin.");
+    if (name.length < 2) return (err.textContent = "Ad soyadını yaz.");
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return (err.textContent = "Geçerli bir e-posta adresi yaz; raporun bu adrese gönderilecek.");
+    if (!$("kvkk").checked) return (err.textContent = "Devam etmek için aydınlatma metnini onaylaman gerekiyor.");
     const missing = DATA.form.filter(it => !state.answers[it.code]);
-    if (missing.length) { $("q-err").textContent = "1. bölümde " + missing.length + " ifade eksik."; return; }
-    const payload = { testCode: state.code, name: state.name, email: state.email, consentAt: state.consentAt,
+    if (missing.length) return (err.textContent = "1. bölümde " + missing.length + " ifade eksik. Cevaplarına dönüp tamamla.");
+    err.textContent = "";
+    Object.assign(state, { orderNo, name, email, consentAt: new Date().toISOString() }); save();
+    const payload = { testCode: state.id, orderNo, name, email, consentAt: state.consentAt,
       answers: state.answers, signals: Object.keys(state.signals) };
-    const btn = $("q-next"); btn.disabled = true; btn.textContent = "Gönderiliyor…";
+    const btn = $("claim-submit"); btn.disabled = true; btn.textContent = "Gönderiliyor…";
     const finish = () => { state.submitted = true; save(); renderDone(); };
     if (PREVIEW) { setTimeout(finish, 600); return; }
     fetch(SCRIPT_URL, { method: "POST", mode: "no-cors", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) })
       .then(finish)
       .catch(() => {
         btn.disabled = false; btn.textContent = "Tekrar dene";
-        $("q-err").textContent = "Cevapların gönderilemedi. İnternet bağlantını kontrol edip tekrar dene; cevapların bu cihazda kayıtlı.";
+        err.textContent = "Bilgilerin gönderilemedi. İnternet bağlantını kontrol edip tekrar dene; cevapların bu cihazda kayıtlı.";
       });
-  }
-  function renderDone() {
-    $("done-name").textContent = state.name.split(" ")[0];
-    $("done-code").textContent = state.code;
-    $("done-email").textContent = state.email;
-    $("shop-link").href = SHOPIER_URL;
-    show("v-done"); setBar();
-  }
-  $("copy-code").addEventListener("click", () => {
-    const b = $("copy-code");
-    navigator.clipboard.writeText(state.code).then(() => { b.textContent = "Kopyalandı"; })
-      .catch(() => { const r = document.createRange(); r.selectNodeContents($("done-code")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); });
   });
 
-  $("new-test").addEventListener("click", () => { state = fresh(); save(); location.reload(); });
+  // ---- Talep alındı ----
+  function renderDone() {
+    $("done-name").textContent = state.name.split(" ")[0];
+    $("done-email").textContent = state.email;
+    $("done-order").textContent = state.orderNo;
+    show("v-done"); setBar();
+  }
+  $("new-test").addEventListener("click", () => { state = fresh(); save(); initIntro(); });
 
   initIntro();
 </script>
