@@ -178,6 +178,19 @@
   .ycu-viz-cap { grid-column: 1 / -1; font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; color: var(--muted); text-transform: uppercase; margin-top: 6px; }
   @media (max-width: 860px) { .ycu-grid { grid-template-columns: 1fr; } }
 
+  /* Meslek Check-Up ürün bandı */
+  .mcu-band { border-bottom: 1px solid var(--line); }
+  .mcu-grid .ycu-copy { order: 2; }
+  .mcu-viz { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; max-width: 420px; width: 100%; justify-self: center; }
+  .mcu-viz li { display: grid; gap: 6px; }
+  .mcu-viz .row { display: flex; justify-content: space-between; gap: 12px; font-size: 14px; color: var(--muted); }
+  .mcu-viz .row b { color: var(--ink); font-weight: 600; }
+  .mcu-viz .bar { height: 8px; border-radius: 999px; background: var(--line); overflow: hidden; }
+  .mcu-viz .bar i { display: block; height: 100%; border-radius: 999px; background: var(--brand); }
+  .mcu-viz li + li .bar i { background: color-mix(in srgb, var(--brand) 55%, var(--line)); }
+  .mcu-viz .ycu-viz-cap { margin-top: 2px; }
+  @media (max-width: 860px) { .mcu-grid .ycu-copy { order: 0; } }
+
   /* Form (Google Form bağlantısı korunuyor) */
   .booking { background: var(--surface); }
   .booking-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(32px, 6vw, 72px); align-items: start; }
@@ -254,6 +267,7 @@
       <li><a href="#kocluk">Koçluk</a></li>
       <li><a href="#surec">Süreç</a></li>
       <li><a href="yetkinlik-check-up.html">Yetkinlik Check-Up</a></li>
+      <li><a href="meslek-check-up.html">Meslek Check-Up</a></li>
     </ul>
     <a class="btn btn-primary" href="#randevu">Randevu al</a>
   </div>
@@ -442,6 +456,26 @@
         </a>
       </div>
       <div class="ycu-viz" role="img" aria-label="45 yetkinliği temsil eden nokta ızgarası"><i class="s"></i><i class=""></i><i class=""></i><i class="s"></i><i class="m"></i><i class=""></i><i class="m"></i><i class=""></i><i class="s"></i><i class=""></i><i class="s"></i><i class="m"></i><i class="m"></i><i class=""></i><i class="s"></i><i class="s"></i><i class="m"></i><i class=""></i><i class=""></i><i class="m"></i><i class="m"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class=""></i><i class="m"></i><i class="s"></i><i class="s"></i><i class="s"></i><i class=""></i><i class="s"></i><i class="m"></i><i class="s"></i><i class="m"></i><i class="m"></i><i class=""></i><i class="m"></i><i class="m"></i><i class="m"></i><i class=""></i><i class="m"></i><i class="s"></i><i class="m"></i><i class="s"></i><i class="s"></i><span class="ycu-viz-cap">45 yetkinlik · güçlü, gelişmekte, gelişim</span></div>
+    </div>
+  </section>
+
+  <section class="mcu-band" id="meslek-check-up">
+    <div class="wrap ycu-grid mcu-grid">
+      <div class="ycu-copy">
+        <p class="eyebrow">Yeni · Kariyer değişimi</p>
+        <h2>Meslek Check-Up</h2>
+        <p class="lead">Kariyer değiştirmeyi ya da yeni bir meslek seçmeyi düşünüyorsan, ilgi alanlarını, becerilerini, iş değerlerini ve kişiliğini birlikte değerlendir. Profilini 47 meslekle karşılaştıralım; en uyumlu mesleklerini, neden uygun olduklarını ve nasıl geçebileceğini anlatan kişisel raporunu al.</p>
+        <div class="ycu-meta"><span>47 meslek</span><span>158 ifade</span><span>~20 dakika</span><span>Kişisel PDF rapor</span></div>
+        <a class="btn btn-brand" href="meslek-check-up.html">Teste başla
+          <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+      </div>
+      <ul class="mcu-viz" aria-label="Örnek meslek uyum sıralaması">
+        <li><span class="row"><b>1. meslek</b><span>%86 uyum</span></span><span class="bar"><i style="width:86%"></i></span></li>
+        <li><span class="row"><b>2. meslek</b><span>%79 uyum</span></span><span class="bar"><i style="width:79%"></i></span></li>
+        <li><span class="row"><b>3. meslek</b><span>%74 uyum</span></span><span class="bar"><i style="width:74%"></i></span></li>
+        <li><span class="ycu-viz-cap">Örnek: profilinin meslek uyum sıralaması</span></li>
+      </ul>
     </div>
   </section>
 
